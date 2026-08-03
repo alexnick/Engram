@@ -38,6 +38,7 @@ ALLOWLIST = [
     'README.md',
     'USER-GUIDE.md',
     'GETTING-STARTED.md',
+    'QUICKSTART-RU.md',
     'PRODUCT-UPDATE-WORKFLOW.md',
     'AGENTS.md',
     '.gitignore',
