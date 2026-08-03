@@ -1,0 +1,36 @@
+# OS junk files
+[Dd]s.[Ss]tore
+Thumbs.db
+db.db
+*.tmp
+*.bak
+
+# IDE / Editor configuration and temporary files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+.obsidian/workspace
+.obsidian/workspace-mobile
+.obsidian/workspace.json
+
+# Local secrets & environment files
+.env
+.env.*
+!.env.example
+secrets.*
+*.pem
+*.key
+
+# Temporary exports and caches
+exports/
+dist/
+build/
+node_modules/
+.cache/
+__pycache__/
+*.py[cod]
+*.log
