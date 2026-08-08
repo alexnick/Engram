@@ -1,19 +1,19 @@
 ---
-name: maintain-life-workspace-product
+name: maintain-engram-product
 description: Use when reusable Brain changes should ship to product.
 ---
 
-# Maintain Life Workspace Product
+# Maintain Engram Product
 
 ## Goal
 
-Keep the clean Life Workspace product and private Brain instances aligned without copying personal content into the product repository.
+Keep the clean Engram product and private Brain instances aligned without copying personal content into the product repository.
 
 ## Repository roles
 
-- **Brain-Product** is the source of truth for reusable skills, workflows, protocols, templates, tools, starter files, and public documentation.
+- **The product repo** is the source of truth for reusable skills, workflows, protocols, templates, tools, starter files, and public documentation.
 - **Private Brains** contain personal and project state. They consume product updates and may prototype reusable improvements.
-- A private Brain becomes a product source only when the user explicitly asks to promote selected reusable changes.
+- A private Engram becomes a product source only when the user explicitly asks to promote selected reusable changes.
 
 Read `docs/MAINTAINING.md` before changing either side.
 
@@ -32,7 +32,7 @@ When uncertain, keep the file private and ask or propose a sanitized product ver
 1. Inspect Git status, branch, remotes, and local rules in every repository.
 2. Stop before overwriting unrelated dirty work.
 3. Compare product/core paths; do not blindly copy whole directories when either side contains repository-specific files.
-4. Make the reusable implementation in Brain-Product first, unless the user explicitly approved promotion from a private prototype.
+4. Make the reusable implementation in the product repo first, unless the user explicitly approved promotion from a private prototype.
 5. Update public documentation and `CHANGELOG.md` for user-visible product changes.
 6. Run privacy checks for private names, health content, raw/session payloads, credentials, and absolute local paths.
 7. Run deterministic lint and tests.
@@ -54,4 +54,4 @@ A product change is not complete until:
 
 ## Safety
 
-Never publish `Brain/`, `Projects/`, `Learning/`, `Feedback/`, private source artifacts, personal absolute paths, secrets, or project-specific knowledge merely because a nearby skill changed. Domain-specific skills require an explicit product decision and must be self-contained before promotion.
+Never publish `Engram/`, `Projects/`, `Learning/`, `Feedback/`, private source artifacts, personal absolute paths, secrets, or project-specific knowledge merely because a nearby skill changed. Domain-specific skills require an explicit product decision and must be self-contained before promotion.

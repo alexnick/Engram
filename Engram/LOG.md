@@ -1,4 +1,4 @@
-# Brain Operations Log
+# Engram Operations Log
 
 This append-only log records non-sensitive workspace operations for chronological search. Entries summarize what happened and link to affected durable paths; they do not replace substantive evidence or Git history. Existing entries must not be rewritten.
 

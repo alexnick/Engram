@@ -1,18 +1,22 @@
 # Changelog
 
-All notable product changes to Life Workspace are recorded here.
+All notable product changes to Engram are recorded here.
 
 The project is still pre-release. Earlier work is summarized from the product history without assigning unsupported release dates.
 
 ## Unreleased
 
+### Changed
+
+- Renamed product from "Life Workspace" to **Engram**. Repository moved from `alexnick/keeper` to [`alexnick/Engram`](https://github.com/alexnick/Engram). All skills, scripts, directories, paths, and documentation updated: `brain.py` → `engram.py`, `Brain/` → `Engram/`, `*-brain` skills → `*-engram`, `Life-Workspace-Protocol.md` → `Engram-Protocol.md`.
+
 ### Added
 
 - README acknowledgement section crediting Andrej Karpathy's LLM Wiki gist and Matt Pocock's skills repository as the sources of the core architecture and the grilling skill.
-- Harness-agnostic product maintenance skill for synchronizing reusable changes without copying private Brain content.
+- Harness-agnostic product maintenance skill for synchronizing reusable changes without copying private Engram content.
 - Hermes Agent setup guide for Desktop, CLI, Telegram, global skills, and bounded memory.
 - Explicit two-repository maintenance model: clean product core and protected private workspaces.
-- Fetch-only product remote guidance for private Brains to prevent accidental publication.
+- Fetch-only product remote guidance for private Engrams to prevent accidental publication.
 - English-only product documentation, defaults, templates, and examples.
 - A Project Map command adapter.
 

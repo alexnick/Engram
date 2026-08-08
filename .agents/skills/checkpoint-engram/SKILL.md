@@ -1,5 +1,5 @@
 ---
-name: checkpoint-brain
+name: checkpoint-engram
 description: Use to propose or create a scoped Git checkpoint after meaningful approved changes.
 ---
 
@@ -7,7 +7,7 @@ description: Use to propose or create a scoped Git checkpoint after meaningful a
 
 ## Goal
 
-Use Git for deliberate rollback and audit history while keeping `Brain/LOG.md` as the append-only operational search trail.
+Use Git for deliberate rollback and audit history while keeping `Engram/LOG.md` as the append-only operational search trail.
 
 ## Default Mode: Propose
 
@@ -53,5 +53,5 @@ If a file mixes intended and unrelated edits and cannot be safely isolated, stop
 * Never amend an existing commit.
 * Never reset, discard, checkout over, clean, or otherwise rewrite user work or Git history.
 * Never force push or push unless separately requested and approved.
-* Never use a commit as a substitute for `Brain/LOG.md`, or put sensitive content in the operational log.
+* Never use a commit as a substitute for `Engram/LOG.md`, or put sensitive content in the operational log.
 * Never claim a checkpoint exists until the commit command succeeds.

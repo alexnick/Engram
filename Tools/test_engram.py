@@ -9,7 +9,7 @@ from datetime import date
 from pathlib import Path
 from urllib.parse import unquote
 
-import brain  # pyright: ignore[reportImplicitRelativeImport]
+import engram  # pyright: ignore[reportImplicitRelativeImport]
 import product_sync  # pyright: ignore[reportImplicitRelativeImport]
 
 
@@ -21,7 +21,7 @@ title: "A title"
 topics: [python, "personal knowledge"]
 sources:
   - https://example.com/article
-  - Brain/Sources/example.md
+  - Engram/Sources/example.md
 ---
 
 # Fallback title
@@ -29,7 +29,7 @@ sources:
 Body text.
 """
 
-        parsed = brain.parse_frontmatter(document)
+        parsed = engram.parse_frontmatter(document)
 
         self.assertTrue(parsed.has_frontmatter)
         self.assertIsNone(parsed.error)
@@ -38,13 +38,13 @@ Body text.
         self.assertEqual(parsed.metadata["topics"], ["python", "personal knowledge"])
         self.assertEqual(
             parsed.metadata["sources"],
-            ["https://example.com/article", "Brain/Sources/example.md"],
+            ["https://example.com/article", "Engram/Sources/example.md"],
         )
         self.assertIn("# Fallback title", parsed.body)
 
     def test_reports_unterminated_and_malformed_frontmatter(self) -> None:
-        unterminated = brain.parse_frontmatter("---\ntype: knowledge\n# no closing delimiter")
-        malformed = brain.parse_frontmatter("---\ntype knowledge\n---\n# Title")
+        unterminated = engram.parse_frontmatter("---\ntype: knowledge\n# no closing delimiter")
+        malformed = engram.parse_frontmatter("---\ntype knowledge\n---\n# Title")
 
         self.assertEqual(unterminated.error, "unterminated YAML frontmatter")
         self.assertIn("key: value", malformed.error or "")
@@ -55,7 +55,7 @@ class IndexTests(unittest.TestCase):
     def test_index_is_stable_and_contains_resolvable_relative_links(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
-            knowledge = root / "Brain" / "Knowledge"
+            knowledge = root / "Engram" / "Knowledge"
             project = root / "Projects" / "Example Project"
             knowledge.mkdir(parents=True)
             project.mkdir(parents=True)
@@ -69,11 +69,11 @@ class IndexTests(unittest.TestCase):
                 "# Example Context\n\nProject summary.\n", encoding="utf-8"
             )
 
-            first = brain.build_index(root)
-            second = brain.build_index(root)
+            first = engram.build_index(root)
+            second = engram.build_index(root)
 
             self.assertEqual(first, second)
-            self.assertIn(brain.GENERATED_MARKER, first)
+            self.assertIn(engram.GENERATED_MARKER, first)
             self.assertNotRegex(first, r"Generated at|\d{2}:\d{2}:\d{2}")
             self.assertIn("status: `unprocessed`", first)
             self.assertIn("First meaningful paragraph.", first)
@@ -81,23 +81,23 @@ class IndexTests(unittest.TestCase):
             destinations = re.findall(r"\[[^]]+\]\(([^)]+)\)", first)
             self.assertEqual(len(destinations), 2)
             for destination in destinations:
-                resolved = root / "Brain" / unquote(destination)
+                resolved = root / "Engram" / unquote(destination)
                 self.assertTrue(resolved.exists(), destination)
 
     def test_index_check_detects_stale_content_without_writing(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
-            (root / "Brain" / "Knowledge").mkdir(parents=True)
+            (root / "Engram" / "Knowledge").mkdir(parents=True)
             (root / "Projects").mkdir()
-            (root / "Brain" / "Knowledge" / "note.md").write_text(
+            (root / "Engram" / "Knowledge" / "note.md").write_text(
                 "# Knowledge\n\nSummary.\n", encoding="utf-8"
             )
-            index_path = root / "Brain" / "INDEX.md"
+            index_path = root / "Engram" / "INDEX.md"
             index_path.write_text("stale\n", encoding="utf-8")
 
             error_output = io.StringIO()
             with redirect_stderr(error_output):
-                result = brain.update_index(root, check=True)
+                result = engram.update_index(root, check=True)
 
             self.assertEqual(result, 1)
             self.assertIn("INDEX.md is stale", error_output.getvalue())
@@ -108,7 +108,7 @@ class LintTests(unittest.TestCase):
     def test_non_english_provenance_heading_is_supported_without_changing_defaults(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
-            knowledge = root / "Brain" / "Knowledge"
+            knowledge = root / "Engram" / "Knowledge"
             knowledge.mkdir(parents=True)
             (root / "Projects").mkdir()
             heading = "\u041f\u0440\u043e\u0438\u0441\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u0435"
@@ -119,14 +119,14 @@ class LintTests(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            issues = brain.lint_workspace(root)
+            issues = engram.lint_workspace(root)
 
             self.assertFalse([issue for issue in issues if "provenance" in issue.message])
 
     def test_broken_relative_link_is_an_error(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
-            knowledge = root / "Brain" / "Knowledge"
+            knowledge = root / "Engram" / "Knowledge"
             (root / "Projects").mkdir(parents=True)
             knowledge.mkdir(parents=True)
             note = knowledge / "note.md"
@@ -134,7 +134,7 @@ class LintTests(unittest.TestCase):
                 "# Note\n\n[Missing document](missing.md)\n", encoding="utf-8"
             )
 
-            issues = brain.lint_workspace(root)
+            issues = engram.lint_workspace(root)
 
             broken = [issue for issue in issues if "broken relative link" in issue.message]
             self.assertEqual(len(broken), 1)
@@ -145,11 +145,11 @@ class LintTests(unittest.TestCase):
     def test_broken_link_in_root_document_is_an_error(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
-            (root / "Brain").mkdir()
+            (root / "Engram").mkdir()
             readme = root / "README.md"
             readme.write_text("# Workspace\n\n[Missing guide](missing.md)\n", encoding="utf-8")
 
-            issues = brain.lint_workspace(root)
+            issues = engram.lint_workspace(root)
 
             broken = [issue for issue in issues if "broken relative link" in issue.message]
             self.assertEqual(len(broken), 1)
@@ -158,7 +158,7 @@ class LintTests(unittest.TestCase):
     def test_external_and_existing_relative_links_pass(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
-            knowledge = root / "Brain" / "Knowledge"
+            knowledge = root / "Engram" / "Knowledge"
             (root / "Projects").mkdir(parents=True)
             knowledge.mkdir(parents=True)
             (knowledge / "target.md").write_text("# Target\n", encoding="utf-8")
@@ -167,14 +167,14 @@ class LintTests(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            issues = brain.lint_workspace(root)
+            issues = engram.lint_workspace(root)
 
             self.assertFalse([issue for issue in issues if issue.severity == "ERROR"])
 
     def test_binary_artifact_with_valid_manifest_passes(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
-            raw = root / "Brain" / "Sources" / "Raw"
+            raw = root / "Engram" / "Sources" / "Raw"
             raw.mkdir(parents=True)
             (raw / "source.bin").write_bytes(b"\x00\xff\x10binary")
             (raw / "source.md").write_text(
@@ -183,7 +183,7 @@ class LintTests(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            issues = brain.lint_workspace(root)
+            issues = engram.lint_workspace(root)
 
             self.assertFalse([issue for issue in issues if issue.severity == "ERROR"])
             self.assertFalse([issue for issue in issues if "content_hash" in issue.message])
@@ -191,7 +191,7 @@ class LintTests(unittest.TestCase):
     def test_artifact_without_content_hash_is_only_a_warning(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
-            raw = root / "Brain" / "Sources" / "Raw"
+            raw = root / "Engram" / "Sources" / "Raw"
             raw.mkdir(parents=True)
             (raw / "source.bin").write_bytes(b"\x00\xffbinary")
             (raw / "source.md").write_text(
@@ -200,7 +200,7 @@ class LintTests(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            issues = brain.lint_workspace(root)
+            issues = engram.lint_workspace(root)
 
             self.assertFalse([issue for issue in issues if issue.severity == "ERROR"])
             hash_warnings = [issue for issue in issues if "content_hash" in issue.message]
@@ -210,7 +210,7 @@ class LintTests(unittest.TestCase):
     def test_locator_only_manifest_does_not_require_artifact(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
-            raw = root / "Brain" / "Sources" / "Raw"
+            raw = root / "Engram" / "Sources" / "Raw"
             raw.mkdir(parents=True)
             (raw / "locator.md").write_text(
                 "---\nsource_url: https://example.com/source\nretrieved_at: 2026-07-14\n---\n\n"
@@ -218,19 +218,19 @@ class LintTests(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            issues = brain.lint_workspace(root)
+            issues = engram.lint_workspace(root)
 
             self.assertFalse([issue for issue in issues if issue.severity == "ERROR"])
 
     def test_binary_artifact_without_manifest_is_an_error(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
-            raw = root / "Brain" / "Sources" / "Raw"
+            raw = root / "Engram" / "Sources" / "Raw"
             raw.mkdir(parents=True)
             artifact = raw / "orphan.pdf"
             artifact.write_bytes(b"%PDF-\x00\xff")
 
-            issues = brain.lint_workspace(root)
+            issues = engram.lint_workspace(root)
 
             orphan_errors = [issue for issue in issues if "has no Markdown manifest" in issue.message]
             self.assertEqual(len(orphan_errors), 1)
@@ -240,7 +240,7 @@ class LintTests(unittest.TestCase):
     def test_manifest_with_missing_artifact_is_an_error(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
-            raw = root / "Brain" / "Sources" / "Raw"
+            raw = root / "Engram" / "Sources" / "Raw"
             raw.mkdir(parents=True)
             manifest = raw / "missing.md"
             manifest.write_text(
@@ -249,7 +249,7 @@ class LintTests(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            issues = brain.lint_workspace(root)
+            issues = engram.lint_workspace(root)
 
             missing_errors = [issue for issue in issues if "artifact_path does not exist" in issue.message]
             self.assertEqual(len(missing_errors), 1)
@@ -259,14 +259,14 @@ class LintTests(unittest.TestCase):
     def test_source_record_raw_materials_is_a_locator(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
-            sources = root / "Brain" / "Sources"
+            sources = root / "Engram" / "Sources"
             sources.mkdir(parents=True)
             (sources / "record.md").write_text(
                 "---\ntype: source\nraw_materials: [Raw/source.md]\n---\n\n# Source record\n",
                 encoding="utf-8",
             )
 
-            issues = brain.lint_workspace(root)
+            issues = engram.lint_workspace(root)
 
             self.assertFalse([issue for issue in issues if "no raw locator" in issue.message])
 
@@ -275,18 +275,18 @@ class LogTests(unittest.TestCase):
     def test_log_writes_metadata_only_and_normalizes_paths(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
-            brain.append_log(
+            engram.append_log(
                 root,
                 operation="sync",
                 title="Update context",
-                files=[str(root / "Brain" / "Knowledge" / "note.md")],
+                files=[str(root / "Engram" / "Knowledge" / "note.md")],
                 note="No file contents included",
                 today=date(2026, 7, 14),
             )
 
-            content = (root / "Brain" / "LOG.md").read_text(encoding="utf-8")
+            content = (root / "Engram" / "LOG.md").read_text(encoding="utf-8")
             self.assertIn("## [2026-07-14] sync | Update context", content)
-            self.assertIn("`Brain/Knowledge/note.md`", content)
+            self.assertIn("`Engram/Knowledge/note.md`", content)
             self.assertIn("Note: No file contents included", content)
 
     def test_external_absolute_path_is_rejected_without_writing(self) -> None:
@@ -295,26 +295,26 @@ class LogTests(unittest.TestCase):
             external = root.parent / "outside-workspace.bin"
 
             with self.assertRaisesRegex(ValueError, "outside workspace"):
-                brain.append_log(
+                engram.append_log(
                     root,
                     operation="sync",
                     title="Reject external path",
                     files=[str(external.resolve())],
                 )
 
-            self.assertFalse((root / "Brain" / "LOG.md").exists())
+            self.assertFalse((root / "Engram" / "LOG.md").exists())
 
     def test_log_field_lengths_are_bounded(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
             with self.assertRaises(ValueError):
-                brain.append_log(root, operation="o" * 41, title="Title")
+                engram.append_log(root, operation="o" * 41, title="Title")
             with self.assertRaises(ValueError):
-                brain.append_log(root, operation="sync", title="t" * 161)
+                engram.append_log(root, operation="sync", title="t" * 161)
             with self.assertRaises(ValueError):
-                brain.append_log(root, operation="sync", title="Title", note="n" * 241)
+                engram.append_log(root, operation="sync", title="Title", note="n" * 241)
 
-            self.assertFalse((root / "Brain" / "LOG.md").exists())
+            self.assertFalse((root / "Engram" / "LOG.md").exists())
 
 
 class ProductSyncTests(unittest.TestCase):

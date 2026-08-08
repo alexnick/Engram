@@ -2,9 +2,9 @@
 
 Use this workflow when the user invokes `/query`.
 
-1. Load and follow `.agents/skills/query-brain/SKILL.md`.
+1. Load and follow `.agents/skills/query-engram/SKILL.md`.
 2. Determine the question from command text or the current request.
-3. Load `CONTEXT-MAP.md`, then `Brain/INDEX.md`, then relevant canonical pages.
+3. Load `CONTEXT-MAP.md`, then `Engram/INDEX.md`, then relevant canonical pages.
 4. Read raw evidence only when exact wording, verification, or disputed provenance requires it.
 5. Answer with claim-level standard Markdown citations.
 6. Clearly separate durable state, source claims, user interpretation, and agent inference.

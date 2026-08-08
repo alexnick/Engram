@@ -21,12 +21,12 @@ Use text following `/capture`, the current user message, a clearly identified pa
 4. Do not develop, improve, argue with, translate, or summarize away the thought.
 5. Use the Capture template to create:
 
-   * `Brain/Inbox/YYYY-MM-DD-HHmm--short-slug.md` for ordinary captures;
-   * `Brain/Health/Inbox/YYYY-MM-DD-HHmm--short-slug.md` for explicit health captures.
+   * `Engram/Inbox/YYYY-MM-DD-HHmm--short-slug.md` for ordinary captures;
+   * `Engram/Health/Inbox/YYYY-MM-DD-HHmm--short-slug.md` for explicit health captures.
 6. Set `status: unprocessed`, the actual local timestamp, detected language, source, and sensitivity.
 7. Search only for an exact or obvious near-duplicate.
 8. If an obvious duplicate exists, append a separately dated `Additional Raw Capture` containing the new exact payload. Never edit the previous payload.
-9. After the raw write, keep `Brain/INDEX.md` complete for the navigable corpus and add permitted processing references without changing the payload. Append a `Brain/LOG.md` entry containing only date, operation, a short non-sensitive title, affected workspace-relative paths, and an optional bounded non-sensitive note. Never copy capture content or external absolute paths into the log.
+9. After the raw write, keep `Engram/INDEX.md` complete for the navigable corpus and add permitted processing references without changing the payload. Append a `Engram/LOG.md` entry containing only date, operation, a short non-sensitive title, affected workspace-relative paths, and an optional bounded non-sensitive note. Never copy capture content or external absolute paths into the log.
 10. Report the saved path and title in one concise sentence.
 
 ## Immutability

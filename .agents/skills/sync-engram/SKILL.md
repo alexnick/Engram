@@ -1,5 +1,5 @@
 ---
-name: sync-brain
+name: sync-engram
 description: Use to propose and apply approved durable changes, then maintain links, index, and log.
 ---
 
@@ -11,7 +11,7 @@ Update the durable knowledge model without saving the full conversation or chang
 
 ## Inputs
 
-Use the current conversation, named session notes, captures, source records, canonical pages, decisions, and relevant context. Load `CONTEXT-MAP.md`, use `Brain/INDEX.md` to locate candidates, and read raw evidence only when exact wording or provenance matters.
+Use the current conversation, named session notes, captures, source records, canonical pages, decisions, and relevant context. Load `CONTEXT-MAP.md`, use `Engram/INDEX.md` to locate candidates, and read raw evidence only when exact wording or provenance matters.
 
 ## Phase 1: Detect and Classify Changes
 
@@ -23,7 +23,7 @@ For each claim, classify it as user preference, decision, external fact, health 
 
 Search relevant existing pages before creating files. Update a canonical page unless the concept or entity can stand alone, has an independent lifecycle, and deserves links from multiple contexts. Do not create duplicates because wording differs.
 
-Raw Capture payloads, raw source artifacts and manifests, dated raw health evidence, and prior `Brain/LOG.md` entries are immutable.
+Raw Capture payloads, raw source artifacts and manifests, dated raw health evidence, and prior `Engram/LOG.md` entries are immutable.
 
 ## Phase 3: Propose Semantic Writes
 
@@ -58,8 +58,8 @@ After approval:
 After approved semantic writes, without requesting another material approval:
 
 1. add or repair real standard Markdown links, with reciprocal backlinks only between editable derived pages; never edit an immutable raw source manifest to add a backlink;
-2. keep `Brain/INDEX.md` complete for navigable corpus pages, including sessions and raw-source manifests;
-3. append a `Brain/LOG.md` entry containing only date, operation, a short non-sensitive title, affected workspace-relative paths, and an optional bounded non-sensitive note; never include raw payloads or external absolute paths;
+2. keep `Engram/INDEX.md` complete for navigable corpus pages, including sessions and raw-source manifests;
+3. append a `Engram/LOG.md` entry containing only date, operation, a short non-sensitive title, affected workspace-relative paths, and an optional bounded non-sensitive note; never include raw payloads or external absolute paths;
 4. update non-semantic timestamps and metadata.
 
 If a proposed maintenance edit would introduce new meaning, stop and add it to a semantic proposal.
@@ -68,4 +68,4 @@ If a proposed maintenance edit would introduce new meaning, stop and add it to a
 
 Report created and updated files, processed captures or sessions, maintenance performed, unresolved conflicts, and remaining questions.
 
-After an approved high-impact Sync, a schema migration, or a substantial completed batch, you may propose `checkpoint-brain`. Never commit implicitly and do not propose a checkpoint for every small Sync.
+After an approved high-impact Sync, a schema migration, or a substantial completed batch, you may propose `checkpoint-engram`. Never commit implicitly and do not propose a checkpoint for every small Sync.

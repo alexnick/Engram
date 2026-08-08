@@ -1,6 +1,6 @@
 ---
-name: lint-brain
-description: Use to audit Life Workspace structure and semantics without modifying files.
+name: lint-engram
+description: Use to audit Engram structure and semantics without modifying files.
 ---
 
 # Lint Brain
@@ -13,7 +13,7 @@ Produce a reproducible, read-only quality report that separates deterministic fa
 
 1. Run exactly:
 
-   `python Tools/brain.py lint`
+   `python Tools/engram.py lint`
 2. Capture its exit status and output. If the command or script is unavailable, report that failure exactly; do not invent a passing result or mutate files to compensate.
 3. After the deterministic pass, perform targeted read-only semantic checks. Broad reading is allowed for the requested lint scope, but avoid unrelated binaries, caches, and external projects.
 4. Report findings in the current conversation only. Do not create, edit, move, archive, delete, stage, or commit files.
@@ -23,15 +23,15 @@ Produce a reproducible, read-only quality report that separates deterministic fa
 Check for:
 
 * raw evidence stored outside append-only locations or raw payloads apparently rewritten;
-* derived source records mixed with `Brain/Sources/Raw/` artifacts;
+* derived source records mixed with `Engram/Sources/Raw/` artifacts;
 * duplicate canonical pages or pages that do not represent standalone entities or concepts;
 * claims whose authority is inferred from a global hierarchy rather than claim type, provenance, date, and scope;
 * source claims, user interpretation, and agent inference blended together;
 * health facts with missing date, unit, range, or attribution, or interpretation presented as diagnosis;
 * missing, broken, pseudo, or misleading Markdown links, reciprocal backlinks outside editable derived pages, or backlinks added to immutable raw manifests;
-* navigable corpus pages—including captures, sessions, derived source records, and raw-source manifests—missing from `Brain/INDEX.md`;
+* navigable corpus pages—including captures, sessions, derived source records, and raw-source manifests—missing from `Engram/INDEX.md`;
 * catalog detail leaking into the small `CONTEXT-MAP.md` router;
-* non-append-only behavior or `Brain/LOG.md` fields outside date, operation, short non-sensitive title, workspace-relative affected paths, and optional bounded non-sensitive note, including raw payloads or external absolute paths;
+* non-append-only behavior or `Engram/LOG.md` fields outside date, operation, short non-sensitive title, workspace-relative affected paths, and optional bounded non-sensitive note, including raw payloads or external absolute paths;
 * unrecorded contradictions, supersession, or open questions;
 * semantic changes that appear to lack an approval boundary;
 * orphan pages—navigable corpus pages with neither an inbound nor an outbound Markdown link to any other navigable page;
@@ -51,4 +51,4 @@ Use real standard Markdown citations. Mark uncertainty explicitly and do not cla
 
 ## Fixes
 
-Lint is always read-only. Offer or invoke `sync-brain` for fixes. Sync may apply genuinely non-semantic maintenance under the maintenance policy, but semantic fixes, merge, archive, delete, context changes, and health interpretation require approval.
+Lint is always read-only. Offer or invoke `sync-engram` for fixes. Sync may apply genuinely non-semantic maintenance under the maintenance policy, but semantic fixes, merge, archive, delete, context changes, and health interpretation require approval.

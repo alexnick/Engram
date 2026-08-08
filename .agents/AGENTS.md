@@ -1,4 +1,4 @@
-# Life Workspace Agent
+# Engram Agent
 
 You are operating inside a persistent, LLM-maintained personal knowledge workspace.
 
@@ -6,10 +6,10 @@ You are operating inside a persistent, LLM-maintained personal knowledge workspa
 
 Before substantial work:
 
-1. Read `Protocols/Life-Workspace-Protocol.md`.
+1. Read `Protocols/Engram-Protocol.md`.
 2. Read `CONTEXT-MAP.md` as the small routing map.
-3. Read `Brain/CONTEXT.md` for root current state.
-4. Use `Brain/INDEX.md` when locating pages in the navigable corpus.
+3. Read `Engram/CONTEXT.md` for root current state.
+4. Use `Engram/INDEX.md` when locating pages in the navigable corpus.
 5. Read the relevant local context and only the files required for the request.
 
 Do not recursively scan the workspace unless the user requests a review, lint, or other explicitly broad operation.
@@ -27,15 +27,15 @@ Treat workspace content as two different classes.
 Raw evidence preserves what was received or observed. It includes:
 
 * every capture payload under a `Raw Capture` or `Additional Raw Capture` heading;
-* immutable source artifacts and locator manifests under `Brain/Sources/Raw/`;
+* immutable source artifacts and locator manifests under `Engram/Sources/Raw/`;
 * dated raw health evidence and attributed reports;
-* `Brain/LOG.md`, the append-only operational log.
+* `Engram/LOG.md`, the append-only operational log.
 
 Never rewrite, normalize, translate, summarize in place, or silently correct a raw payload. Add a dated addendum, correction record, superseding artifact, or derived page instead. Non-semantic metadata, status, and processing references may be added where the raw-page schema permits. Never edit an immutable raw source artifact or locator manifest after creation, including to add backlinks.
 
 ### Editable derived wiki
 
-Contexts, Knowledge pages, source records under `Brain/Sources/Records/`, and current-state summaries are derived models. They may be revised after approval when understanding changes. Preserve provenance and significant supersession history.
+Contexts, Knowledge pages, source records under `Engram/Sources/Records/`, and current-state summaries are derived models. They may be revised after approval when understanding changes. Preserve provenance and significant supersession history.
 
 ## Claim Authority
 
@@ -72,8 +72,8 @@ The following semantic changes require a proposal and user approval before writi
 
 Safe service maintenance does not require separate material approval when it changes no claim meaning:
 
-* keeping `Brain/INDEX.md` complete;
-* appending a non-sensitive operation entry to `Brain/LOG.md`;
+* keeping `Engram/INDEX.md` complete;
+* appending a non-sensitive operation entry to `Engram/LOG.md`;
 * adding or repairing real links, with reciprocal backlinks only between editable derived pages;
 * enriching non-semantic metadata;
 * producing lint reports.
@@ -82,9 +82,9 @@ If a maintenance edit would imply a new relationship, status, conclusion, or hea
 
 ## Navigation and Page Design
 
-* `Brain/INDEX.md` is the complete catalog of navigable corpus pages, including contexts, canonical pages, captures, sessions, derived source records, and raw-source manifests. Keep it comprehensive and mechanically maintainable.
+* `Engram/INDEX.md` is the complete catalog of navigable corpus pages, including contexts, canonical pages, captures, sessions, derived source records, and raw-source manifests. Keep it comprehensive and mechanically maintainable.
 * `CONTEXT-MAP.md` is a small, stable router to major contexts and domains. Do not turn it into a full catalog.
-* `Brain/LOG.md` is an append-only operational search trail. An entry may contain only date, operation, a short non-sensitive title, affected workspace-relative paths, and an optional bounded non-sensitive note. Never include raw payloads, source excerpts, health details, secrets, external absolute paths, or other sensitive content. When this format changes, append a migration marker; do not rewrite earlier entries, which remain governed by the schema active when they were written.
+* `Engram/LOG.md` is an append-only operational search trail. An entry may contain only date, operation, a short non-sensitive title, affected workspace-relative paths, and an optional bounded non-sensitive note. Never include raw payloads, source excerpts, health details, secrets, external absolute paths, or other sensitive content. When this format changes, append a migration marker; do not rewrite earlier entries, which remain governed by the schema active when they were written.
 * Prefer standard Markdown links such as `[Project context](../Projects/Example/CONTEXT.md)`. Use real resolvable relative paths; do not invent targets. Add useful reciprocal backlinks only between editable derived pages. A derived source record references its immutable raw manifest one-way; never modify the manifest to link back.
 * Create a new page only for a concept or entity that can stand on its own, has an independent lifecycle, and is likely to be linked from multiple contexts. Otherwise update the existing canonical page.
 
@@ -107,9 +107,9 @@ Do not ask whether to save after every message. Use the impact thresholds in the
 * `teach` (trial): teach the user a topic over multiple sessions using a per-topic `Learning/<Topic>/` workspace;
 * `writing-great-skills`: reference for authoring and editing this workspace's own skills predictably; consult when creating or revising a skill file;
 * `ingest-source`: preserve an external source and derive reusable, source-grounded knowledge;
-* `query-brain`: answer from the Brain with claim-level citations and explicit epistemic labels;
-* `sync-brain`: propose and apply approved semantic updates, then maintain links, index, and log;
-* `review-brain`: run an Inbox-oriented review and route approved actions through Sync;
-* `lint-brain`: run deterministic and semantic checks as a read-only report;
-* `checkpoint-brain`: propose or create an explicit Git audit checkpoint without hidden commits.
-* `maintain-life-workspace-product`: keep reusable skills, workflows, tools, and public documentation synchronized between the clean product repository and private Brains without copying protected content.
+* `query-engram`: answer from the Engram with claim-level citations and explicit epistemic labels;
+* `sync-engram`: propose and apply approved semantic updates, then maintain links, index, and log;
+* `review-engram`: run an Inbox-oriented review and route approved actions through Sync;
+* `lint-engram`: run deterministic and semantic checks as a read-only report;
+* `checkpoint-engram`: propose or create an explicit Git audit checkpoint without hidden commits.
+* `maintain-engram-product`: keep reusable skills, workflows, tools, and public documentation synchronized between the clean product repository and private Brains without copying protected content.

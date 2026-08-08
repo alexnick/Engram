@@ -3,11 +3,11 @@ type: lint-report
 status: draft
 created: YYYY-MM-DDTHH:mm:ss
 scope: ""
-deterministic_command: "python Tools/brain.py lint"
+deterministic_command: "python Tools/engram.py lint"
 exit_status: unknown
 ---
 
-# Brain Lint Report
+# Engram Lint Report
 
 > [!NOTE]
 > Lint itself is read-only and normally reports in conversation. Persist a report from this template only when explicitly requested or approved through the appropriate durable-write workflow.

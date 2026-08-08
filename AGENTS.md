@@ -1,13 +1,13 @@
-# Life Workspace Agent Bootstrap
+# Engram Agent Bootstrap
 
-This repository is a Life Workspace / Brain repository.
+This repository is a Engram / Brain repository.
 
 Before substantial work in this repository:
 
 1. Read `.agents/AGENTS.md`.
-2. Read `USER-GUIDE.md` when the user asks how to use the Brain.
+2. Read `USER-GUIDE.md` when the user asks how to use the Engram.
 3. Read `QUICKSTART.md` for the shortest onboarding guide.
-4. Follow the Life Workspace protocol and approval boundaries.
+4. Follow the Engram protocol and approval boundaries.
 
 This root `AGENTS.md` is the portable entry point for Hermes, IDE agents, and other harnesses that discover instructions from the workspace root.
 

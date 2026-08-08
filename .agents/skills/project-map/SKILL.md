@@ -35,7 +35,7 @@ Accept natural language such as:
 
 ## Startup router
 
-Before substantial work, load `CONTEXT-MAP.md`, `Brain/INDEX.md`, root context, and relevant project context. Then classify the incoming task:
+Before substantial work, load `CONTEXT-MAP.md`, `Engram/INDEX.md`, root context, and relevant project context. Then classify the incoming task:
 
 1. **Small decision:** a single isolated decision; handle directly or with a short internal explore/grilling pass. Do not create a map.
 2. **Medium system:** one coherent subsystem; create or update one focused decision ticket/session if useful.
@@ -123,8 +123,8 @@ Work at most one non-research ticket per session unless the user explicitly narr
 3. Pick the next unblocked item from `Current frontier` unless the user named a different item.
 4. Route internally to the appropriate mode: exploration, grilling, research, prototype, task, or sync.
 5. Resolve the item into one of:
-   * a durable decision/spec update proposed through `sync-brain`;
-   * a proposed implementation-plan or backlog change routed through `sync-brain` when it updates canonical project state;
+   * a durable decision/spec update proposed through `sync-engram`;
+   * a proposed implementation-plan or backlog change routed through `sync-engram` when it updates canonical project state;
    * a blocked item with explicit prerequisites;
    * a fog item graduated into a sharper ticket;
    * an out-of-scope ruling.
@@ -132,6 +132,6 @@ Work at most one non-research ticket per session unless the user explicitly narr
 
 ## Relationship to other skills
 
-`project-map` is the main user-facing workflow for large projects. `explore`, `grilling`, `research` via subagents/tools, `prototype`, and `sync-brain` are internal modes or follow-up operations. The user does not need to choose among them.
+`project-map` is the main user-facing workflow for large projects. `explore`, `grilling`, `research` via subagents/tools, `prototype`, and `sync-engram` are internal modes or follow-up operations. The user does not need to choose among them.
 
-Do not promote provisional map content into canonical project specs, decisions, or context without `sync-brain` approval. The map can be created or updated when the user explicitly asks to work through the project map, but consequential project semantics still require Sync before they become canonical state.
+Do not promote provisional map content into canonical project specs, decisions, or context without `sync-engram` approval. The map can be created or updated when the user explicitly asks to work through the project map, but consequential project semantics still require Sync before they become canonical state.

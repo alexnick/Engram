@@ -2,7 +2,7 @@
 
 Use this workflow when the user invokes `/checkpoint`.
 
-1. Load and follow `.agents/skills/checkpoint-brain/SKILL.md`.
+1. Load and follow `.agents/skills/checkpoint-engram/SKILL.md`.
 2. Default to propose mode.
 3. Inspect Git status and relevant staged and unstaged diffs without changing the worktree.
 4. Present the reason, intended paths, exclusions, risks, and proposed commit message.

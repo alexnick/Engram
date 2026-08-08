@@ -1,10 +1,10 @@
 # Product Update Workflow
 
-Use this workflow when the user asks to update Brain workflows, skills, protocols, templates, tools, or documentation across the personal Brain, Brain-Product, and user Brain repositories.
+Use this workflow when the user asks to update Engram workflows, skills, protocols, templates, tools, or documentation across the personal Engram, product, and user Engram repositories.
 
 ## Rule
 
-Brain-Product is the clean source of truth for product/core. User Brain repositories consume it as upstream. Never use a user Brain as the source for product/core without explicit approval.
+The product repo is the clean source of truth for product/core. User Engram repositories consume it as upstream. Never use a user Engram as the source for product/core without explicit approval.
 
 ## Steps
 

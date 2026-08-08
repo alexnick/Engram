@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Conservative local helper for syncing Life Workspace product/core files.
+"""Conservative local helper for syncing Engram product/core files.
 
 This script copies only allowlisted product/core paths between local checkouts.
 It intentionally does not commit, push, delete protected user data, or resolve
@@ -18,22 +18,22 @@ ALLOWLIST = [
     '.agents/rules',
     '.agents/workflows',
     '.agents/skills/capture',
-    '.agents/skills/checkpoint-brain',
+    '.agents/skills/checkpoint-engram',
     '.agents/skills/explore',
     '.agents/skills/grilling',
     '.agents/skills/ingest-source',
-    '.agents/skills/lint-brain',
-    '.agents/skills/maintain-life-workspace-product',
+    '.agents/skills/lint-engram',
+    '.agents/skills/maintain-engram-product',
     '.agents/skills/project-map',
-    '.agents/skills/query-brain',
-    '.agents/skills/review-brain',
-    '.agents/skills/sync-brain',
+    '.agents/skills/query-engram',
+    '.agents/skills/review-engram',
+    '.agents/skills/sync-engram',
     '.agents/skills/teach',
     '.agents/skills/writing-great-skills',
     'Protocols',
     'Templates',
-    'Tools/brain.py',
-    'Tools/test_brain.py',
+    'Tools/engram.py',
+    'Tools/test_engram.py',
     'Tools/product_sync.py',
     'Dashboards/HOME.md',
     'README.md',
@@ -46,18 +46,18 @@ ALLOWLIST = [
 ]
 
 PROTECTED_PREFIXES = [
-    'Brain/CONTEXT.md',
-    'Brain/INDEX.md',
-    'Brain/LOG.md',
-    'Brain/.review-state.md',
-    'Brain/Inbox',
-    'Brain/Health',
-    'Brain/Knowledge',
-    'Brain/Decisions',
-    'Brain/Entities',
-    'Brain/Events',
-    'Brain/Sessions',
-    'Brain/Sources',
+    'Engram/CONTEXT.md',
+    'Engram/INDEX.md',
+    'Engram/LOG.md',
+    'Engram/.review-state.md',
+    'Engram/Inbox',
+    'Engram/Health',
+    'Engram/Knowledge',
+    'Engram/Decisions',
+    'Engram/Entities',
+    'Engram/Events',
+    'Engram/Sessions',
+    'Engram/Sources',
     'Projects',
     'Learning',
     'Feedback',
@@ -107,7 +107,7 @@ def copy_path(source_root: Path, target_root: Path, item: str, dry_run: bool) ->
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description='Sync allowlisted Life Workspace product/core paths between local checkouts.')
+    parser = argparse.ArgumentParser(description='Sync allowlisted Engram product/core paths between local checkouts.')
     parser.add_argument('--source', required=True, type=Path, help='Source checkout path')
     parser.add_argument('--target', required=True, type=Path, help='Target checkout path')
     parser.add_argument('--dry-run', action='store_true', help='Print planned copies without writing')

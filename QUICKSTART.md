@@ -1,14 +1,14 @@
 # Quickstart
 
-Life Workspace keeps durable knowledge in Markdown. Chat is where you think; the Brain is what survives the conversation.
+Engram keeps durable knowledge in Markdown. Chat is where you think; the Engram is what survives the conversation.
 
 ## 1. Open the workspace
 
 Clone the repository and open the folder in an agent harness that reads `AGENTS.md`.
 
 ```bash
-git clone https://github.com/alexnick/keeper.git life-workspace
-cd life-workspace
+git clone https://github.com/alexnick/Engram.git engram
+cd engram
 ```
 
 The agent should load the workspace rules automatically. You should not need to explain the storage model in every session.
@@ -27,15 +27,15 @@ Or use the short command:
 /capture Optimization can remove the choices that make a game interesting.
 ```
 
-Expected result: a new raw capture under `Brain/Inbox/`. The original wording remains unchanged. The capture is evidence of what you said, not proof that the statement is true.
+Expected result: a new raw capture under `Engram/Inbox/`. The original wording remains unchanged. The capture is evidence of what you said, not proof that the statement is true.
 
-## 3. Ask the Brain
+## 3. Ask the Engram
 
 ```text
-What does the Brain know about optimization and player choice? Link the pages you use.
+What does the Engram know about optimization and player choice? Link the pages you use.
 ```
 
-Query is read-only. It should cite durable pages and say when the Brain does not yet contain an answer.
+Query is read-only. It should cite durable pages and say when the Engram does not yet contain an answer.
 
 ## 4. Develop the idea
 
@@ -64,13 +64,13 @@ The agent should name the files and claims it wants to change. Approve all, appr
 ## 6. Check the workspace
 
 ```bash
-python Tools/brain.py status
-python Tools/brain.py index
-python Tools/brain.py lint
-python Tools/test_brain.py
+python Tools/engram.py status
+python Tools/engram.py index
+python Tools/engram.py lint
+python Tools/test_engram.py
 ```
 
-`Brain/INDEX.md` is generated. Do not edit it by hand.
+`Engram/INDEX.md` is generated. Do not edit it by hand.
 
 ## What to say when you are unsure
 
@@ -79,7 +79,7 @@ I do not know whether this should be a capture, an exploration, or a durable upd
 ```
 
 ```text
-Show me exactly what you plan to write before you change the Brain.
+Show me exactly what you plan to write before you change the Engram.
 ```
 
 ```text

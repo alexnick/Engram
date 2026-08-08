@@ -1,10 +1,10 @@
-# Maintaining Life Workspace
+# Maintaining Engram
 
 This guide keeps the clean product repository and private Brain instances in sync without publishing personal content.
 
 ## Repository roles
 
-- **Brain-Product** is the upstream for reusable skills, workflows, protocol, templates, tools, starter files, and public documentation.
+- **The product repo** is the upstream for reusable skills, workflows, protocol, templates, tools, starter files, and public documentation.
 - **Private Brains** contain captures, sources, project records, personal context, and other user state.
 - A private prototype becomes product work only when its reusable part is selected, cleaned, documented, and reviewed.
 
@@ -23,18 +23,18 @@ The executable allowlist lives in `Tools/product_sync.py`. Keep this guide descr
 Do not overwrite these from a product update without an approved migration:
 
 ```text
-Brain/CONTEXT.md
-Brain/INDEX.md
-Brain/LOG.md
-Brain/.review-state.md
-Brain/Inbox/
-Brain/Health/
-Brain/Knowledge/
-Brain/Decisions/
-Brain/Entities/
-Brain/Events/
-Brain/Sessions/
-Brain/Sources/
+Engram/CONTEXT.md
+Engram/INDEX.md
+Engram/LOG.md
+Engram/.review-state.md
+Engram/Inbox/
+Engram/Health/
+Engram/Knowledge/
+Engram/Decisions/
+Engram/Entities/
+Engram/Events/
+Engram/Sessions/
+Engram/Sources/
 Projects/
 Learning/
 Feedback/
@@ -54,7 +54,7 @@ When the user asks to ship reusable Brain changes:
 1. Inspect status, branch, remotes, and local rules in every repository.
 2. Stop before overwriting unrelated dirty work.
 3. Classify the changes as product core, private state, or migration.
-4. Implement the reusable version in Brain-Product. If it began in a private Brain, remove private names, paths, sources, and examples.
+4. Implement the reusable version in the product repo. If it began in a private Engram, remove private names, paths, sources, and examples.
 5. Update README, onboarding, and `CHANGELOG.md` when behavior changes.
 6. Run privacy checks for secrets, personal paths, health material, private project names, raw payloads, and session content.
 7. Run lint and tests.
@@ -68,13 +68,13 @@ When the user asks to ship reusable Brain changes:
 Preview:
 
 ```bash
-python Tools/product_sync.py --source C:/workspace/Brain-Product --target C:/workspace/Brain --dry-run
+python Tools/product_sync.py --source <product-checkout> --target <private-engram> --dry-run
 ```
 
 Apply:
 
 ```bash
-python Tools/product_sync.py --source C:/workspace/Brain-Product --target C:/workspace/Brain
+python Tools/product_sync.py --source <product-checkout> --target <private-engram>
 ```
 
 The helper merges allowlisted directories and preserves target-only files. It refuses identical or nested source/target roots. It does not commit, push, delete protected state, or resolve Git conflicts. Always inspect the diff afterward.

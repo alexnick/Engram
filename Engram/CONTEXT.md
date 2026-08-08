@@ -1,10 +1,10 @@
-# Personal Brain Context
+# Personal Engram Context
 
 Last updated: YYYY-MM-DD
 
 ## Purpose
 
-This Brain stores durable personal knowledge, ideas, source-derived understanding, project context, decisions, and factual records.
+This Engram stores durable personal knowledge, ideas, source-derived understanding, project context, decisions, and factual records.
 
 ## Current Priorities
 
@@ -20,7 +20,7 @@ This Brain stores durable personal knowledge, ideas, source-derived understandin
 
 - Preserve raw thoughts and source evidence without rewriting their payloads.
 - Maintain conclusions, decisions, and current context in the editable derived layer.
-- Use `Brain/INDEX.md` for content discovery, `Brain/LOG.md` for operation search, and Git for rollback and file history.
+- Use `Engram/INDEX.md` for content discovery, `Engram/LOG.md` for operation search, and Git for rollback and file history.
 - Synchronize agreed knowledge instead of storing complete conversations.
 
 ## Open Questions

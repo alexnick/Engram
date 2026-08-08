@@ -1,11 +1,11 @@
-# Life Workspace Protocol
+# Engram Protocol
 
 Version: 0.2
 Status: Active
 
 ## Purpose
 
-Life Workspace is a persistent AI-assisted knowledge environment.
+Engram is a persistent AI-assisted knowledge environment.
 
 Its goal is not to preserve conversations. Its goal is to maintain an accurate, searchable, source-grounded, and continuously evolving model of the user's knowledge, projects, decisions, sources, health records, and ideas.
 
@@ -29,7 +29,7 @@ Derived contexts, Knowledge pages, source records, and summaries may be edited a
 
 When understanding changes, update the existing canonical page. Create a new page only when the entity or concept stands independently, has its own lifecycle, or deserves links from multiple contexts.
 
-Use decision records for consequential choices, source records for source-specific analysis, project maps for large-project navigation, and `Brain/LOG.md` only for operational search.
+Use decision records for consequential choices, source records for source-specific analysis, project maps for large-project navigation, and `Engram/LOG.md` only for operational search.
 
 ### Preserve raw thoughts
 
@@ -42,7 +42,7 @@ Do not read the entire Brain at session start.
 Use:
 
 1. `CONTEXT-MAP.md` as the small domain router;
-2. `Brain/INDEX.md` as the complete catalog of navigable corpus pages, including sessions and raw-source manifests;
+2. `Engram/INDEX.md` as the complete catalog of navigable corpus pages, including sessions and raw-source manifests;
 3. root and local context;
 4. only the relevant canonical and evidence pages.
 
@@ -81,8 +81,8 @@ Indexes, backlinks, operational logs, current chat, and model memory are discove
 ### Navigation
 
 * `CONTEXT-MAP.md` is a small, stable router to major contexts and domains.
-* `Brain/INDEX.md` is the complete catalog of navigable corpus pages, including contexts, canonical pages, captures, sessions, derived source records, and raw-source manifests.
-* `Brain/LOG.md` is an append-only operational log for search and maintenance history, not a knowledge model.
+* `Engram/INDEX.md` is the complete catalog of navigable corpus pages, including contexts, canonical pages, captures, sessions, derived source records, and raw-source manifests.
+* `Engram/LOG.md` is an append-only operational log for search and maintenance history, not a knowledge model.
 
 Operational log entries may contain only the date, operation type, a short non-sensitive title, affected workspace-relative paths, and at most one bounded non-sensitive note. They must not contain raw thoughts, health details, source excerpts, credentials, secrets, external absolute paths, or other sensitive content. A log-schema change is recorded by appending a migration marker; entries before that marker remain immutable legacy records governed by the schema active when they were written.
 
@@ -94,7 +94,7 @@ A link is maintenance only when it records an already-established relationship. 
 
 ### Raw captures
 
-Ordinary captures live under `Brain/Inbox/`. Explicit health captures live under `Brain/Health/Inbox/`.
+Ordinary captures live under `Engram/Inbox/`. Explicit health captures live under `Engram/Health/Inbox/`.
 
 The original payload is immutable. Metadata, processing status, and links to derived pages may be added. A near-duplicate may be appended as a separately dated `Additional Raw Capture`; neither payload may later be rewritten.
 
@@ -104,8 +104,8 @@ No Git checkpoint is required or implied after Capture.
 
 Use two layers:
 
-* `Brain/Sources/Raw/<domain>/...` for immutable artifacts and locator manifests;
-* `Brain/Sources/Records/<domain>/...` for editable, derived source records.
+* `Engram/Sources/Raw/<domain>/...` for immutable artifacts and locator manifests;
+* `Engram/Sources/Records/<domain>/...` for editable, derived source records.
 
 A locator manifest records the original locator, retrieval time, access method, artifact identity or checksum when available, and access limitations. It does not pretend inaccessible content was read. Raw artifacts and manifests are immutable; new retrievals create new versions or dated addenda. The derived source record references the manifest one-way, and the manifest is never edited later to add a backlink.
 
@@ -117,8 +117,8 @@ A completed ingestion must account for:
 2. an approved derived source record;
 3. approved canonical pages when reusable standalone knowledge or a project change warrants them, otherwise an explicit `Canonical pages: none needed` result;
 4. a one-way link from the derived source record to the raw manifest, plus real Markdown links and reciprocal backlinks only among editable derived pages;
-5. `Brain/INDEX.md` maintenance for all navigable corpus pages created by the ingest;
-6. a policy-conforming non-sensitive `Brain/LOG.md` entry;
+5. `Engram/INDEX.md` maintenance for all navigable corpus pages created by the ingest;
+6. a policy-conforming non-sensitive `Engram/LOG.md` entry;
 7. explicit contradictions and open questions, including an explicit “none found” result when appropriate.
 
 Project-semantic changes discovered during ingestion are proposed and applied through Sync.
@@ -139,7 +139,7 @@ Use focused structured questioning to develop an idea, plan, design, or belief. 
 
 ### Query
 
-Load `CONTEXT-MAP.md`, then `Brain/INDEX.md`, then relevant canonical pages, and raw evidence only when needed. Cite durable pages and clearly separate durable state, source claims, user interpretation, and agent inference. Propose Sync for a novel durable synthesis.
+Load `CONTEXT-MAP.md`, then `Engram/INDEX.md`, then relevant canonical pages, and raw evidence only when needed. Cite durable pages and clearly separate durable state, source claims, user interpretation, and agent inference. Propose Sync for a novel durable synthesis.
 
 ### Sync
 
@@ -147,7 +147,7 @@ Preview semantic changes, obtain approval, and apply only the approved scope. Af
 
 ### Review
 
-Remain Inbox-oriented by default. Run `python Tools/brain.py status`, then verify candidates through a targeted scan of Inbox metadata and `Brain/INDEX.md`; never rely on index status alone. Surface manageable batches and route semantic actions through Sync. A broad quality audit belongs to Lint unless the user explicitly expands Review scope.
+Remain Inbox-oriented by default. Run `python Tools/engram.py status`, then verify candidates through a targeted scan of Inbox metadata and `Engram/INDEX.md`; never rely on index status alone. Surface manageable batches and route semantic actions through Sync. A broad quality audit belongs to Lint unless the user explicitly expands Review scope.
 
 ### Ingest
 
@@ -155,11 +155,11 @@ Preserve source provenance in the raw layer, obtain approval for all derived sou
 
 ### Lint
 
-Run `python Tools/brain.py lint` first, then perform read-only semantic checks. Report findings without changing files. Route fixes through Sync.
+Run `python Tools/engram.py lint` first, then perform read-only semantic checks. Report findings without changing files. Route fixes through Sync.
 
 ### Checkpoint
 
-Use Git as rollback and audit history; use `Brain/LOG.md` for operational search. Default to proposing a checkpoint. Never make hidden commits, never checkpoint every Capture or Query, and never amend or reset history. Commit only after a current user request or explicit approval and only after inspecting status and diffs. If any already-staged path is outside the current approved checkpoint scope, stop, report it, and neither unstage nor commit anything.
+Use Git as rollback and audit history; use `Engram/LOG.md` for operational search. Default to proposing a checkpoint. Never make hidden commits, never checkpoint every Capture or Query, and never amend or reset history. Commit only after a current user request or explicit approval and only after inspecting status and diffs. If any already-staged path is outside the current approved checkpoint scope, stop, report it, and neither unstage nor commit anything.
 
 ## Save-Suggestion Policy
 
@@ -181,7 +181,7 @@ Do not ask after every response.
 
 Preserve exact dates, values, units, reference ranges, medication names, dosages, and stated medical advice. Distinguish user reports, laboratory data, clinician statements, source claims, user interpretation, and agent inference.
 
-Do not silently diagnose, alter dosages, merge conflicting records, or include sensitive health content in `Brain/LOG.md`. Health interpretation and health-context changes require explicit approval.
+Do not silently diagnose, alter dosages, merge conflicting records, or include sensitive health content in `Engram/LOG.md`. Health interpretation and health-context changes require explicit approval.
 
 ## Language Policy
 
@@ -194,7 +194,7 @@ Do not silently diagnose, alter dosages, merge conflicting records, or include s
 
 ## Project Integration
 
-Application source code need not live inside the Brain. A project workspace may connect external source folders, project context under `Projects/`, and relevant Brain knowledge.
+Application source code need not live inside the Engram. A project workspace may connect external source folders, project context under `Projects/`, and relevant Brain knowledge.
 
 Avoid broad scans of generated files, binaries, caches, and unrelated projects. Source-ingested project recommendations do not change project semantics until approved through Sync.
 

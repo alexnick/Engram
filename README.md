@@ -1,20 +1,20 @@
-# Life Workspace
+# Engram
 
 **A durable Markdown brain for AI agents.**
 
 Chats are useful for thinking. They are a poor place to keep decisions, evidence, and project context.
 
-Life Workspace gives an AI agent a small, explicit system for maintaining knowledge across conversations. Markdown holds the state. Git keeps the history. Skills define how information enters, changes, and leaves the workspace.
+Engram gives an AI agent a small, explicit system for maintaining knowledge across conversations. Markdown holds the state. Git keeps the history. Skills define how information enters, changes, and leaves the workspace.
 
 ## The model
 
-Life Workspace keeps three things separate:
+Engram keeps three things separate:
 
 1. **Raw evidence** preserves what was actually said, received, or observed. Captures and source artifacts are append-only.
 2. **Derived knowledge** holds the current working model: context, knowledge, decisions, entities, events, source records, and project documents.
 3. **Operations** control the movement between them. An agent can preserve raw input immediately, but it must show a proposal before changing durable meaning.
 
-> Conversation is temporary. Durable meaning enters the Brain through an explicit operation.
+> Conversation is temporary. Durable meaning enters the Engram through an explicit operation.
 
 This is an implementation of the [LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) idea, originally proposed by Andrej Karpathy: a maintained knowledge base that compounds over time instead of a pile of transcripts that must be re-read from scratch.
 
@@ -27,21 +27,21 @@ This is an implementation of the [LLM Wiki](https://gist.github.com/karpathy/442
 | `explore` | Develop an unclear idea one question at a time. |
 | `grilling` | Pressure-test a plan or decision. |
 | `ingest-source` | Preserve a source and extract grounded claims from it. |
-| `query-brain` | Answer from the Brain with links to the pages used. |
-| `sync-brain` | Preview and apply approved changes to durable knowledge. |
-| `review-brain` | Process unhandled captures in small batches. |
-| `lint-brain` | Check structure and semantic drift without editing files. |
-| `checkpoint-brain` | Create a deliberate Git checkpoint after approval. |
+| `query-engram` | Answer from the Engram with links to the pages used. |
+| `sync-engram` | Preview and apply approved changes to durable knowledge. |
+| `review-engram` | Process unhandled captures in small batches. |
+| `lint-engram` | Check structure and semantic drift without editing files. |
+| `checkpoint-engram` | Create a deliberate Git checkpoint after approval. |
 
 You do not need to memorize these names. Describe what you want in plain English and let the agent route the request.
 
 ## Try it
 
 ```bash
-git clone https://github.com/alexnick/keeper.git life-workspace
-cd life-workspace
-python Tools/brain.py status
-python Tools/brain.py lint
+git clone https://github.com/alexnick/Engram.git engram
+cd engram
+python Tools/engram.py status
+python Tools/engram.py lint
 ```
 
 Open the folder in an agent harness that reads `AGENTS.md`, then say:
@@ -53,13 +53,13 @@ Save this exact thought: a useful memory system should preserve evidence without
 Next:
 
 ```text
-What does the Brain know about memory systems?
+What does the Engram know about memory systems?
 ```
 
 When a discussion produces a decision or reusable insight:
 
 ```text
-Show me what you would update in the Brain. Do not write it until I approve the proposal.
+Show me what you would update in the Engram. Do not write it until I approve the proposal.
 ```
 
 See [Quickstart](QUICKSTART.md) for the full first-use loop.
@@ -67,17 +67,17 @@ See [Quickstart](QUICKSTART.md) for the full first-use loop.
 ## Repository layout
 
 ```text
-Life Workspace/
+Engram/
 ├── AGENTS.md               portable entry point for agents
 ├── .agents/
 │   ├── AGENTS.md           agent contract
 │   ├── skills/             reusable operations
 │   └── workflows/          command adapters
-├── Brain/                  personal knowledge and evidence
+├── Engram/                  personal knowledge and evidence
 ├── Projects/               project context, maps, and decisions
 ├── Protocols/              storage and approval rules
 ├── Templates/              record schemas
-└── Tools/brain.py          index, status, lint, and log CLI
+└── Tools/engram.py          index, status, lint, and log CLI
 ```
 
 The public repository contains an empty starter Brain. Your private Brain contains your actual captures, projects, sources, and personal context.
@@ -102,7 +102,7 @@ For Hermes Agent, see [docs/HERMES.md](docs/HERMES.md).
 
 - [Quickstart](QUICKSTART.md)
 - [User Guide](USER-GUIDE.md)
-- [Protocol](Protocols/Life-Workspace-Protocol.md)
+- [Protocol](Protocols/Engram-Protocol.md)
 - [Project conventions](docs/PROJECTS.md)
 - [Hermes integration](docs/HERMES.md)
 - [Maintainer guide](docs/MAINTAINING.md)
@@ -110,11 +110,11 @@ For Hermes Agent, see [docs/HERMES.md](docs/HERMES.md).
 
 ## Acknowledgements
 
-Life Workspace stands on existing ideas we learned from and adapted:
+Engram stands on existing ideas we learned from and adapted:
 
-- **[LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)** by [Andrej Karpathy](https://karpathy.bearblog.dev/) — the core architecture of an LLM-maintained Markdown knowledge base with immutable raw sources, a derived wiki, and Ingest/Query/Lint operations. Life Workspace is a direct implementation of this idea.
+- **[LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)** by [Andrej Karpathy](https://karpathy.bearblog.dev/) — the core architecture of an LLM-maintained Markdown knowledge base with immutable raw sources, a derived wiki, and Ingest/Query/Lint operations. Engram is a direct implementation of this idea.
 - **[mattpocock/skills](https://github.com/mattpocock/skills)** by [Matt Pocock](https://github.com/mattpocock) — the grilling pattern (interviewing in dependency-ordered rounds over a design tree) inspired the `grilling` skill, and the `teach` skill was adopted on trial from the same repository.
 
 ## Status
 
-Life Workspace is usable and still evolving. Current work focuses on keeping the system understandable and safe as a Brain grows across years, projects, and agent harnesses.
+Engram is usable and still evolving. Current work focuses on keeping the system understandable and safe as a Brain grows across years, projects, and agent harnesses.

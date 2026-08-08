@@ -23,7 +23,7 @@ content_hash: "" # optional when a local snapshot exists
 
 ## Artifact Sidecar
 
-*For a binary or local artifact, store the immutable artifact beside this Markdown manifest with the same dated slug and its original extension: `YYYY-MM-DD--slug.md` for the manifest and, for example, `YYYY-MM-DD--slug.pdf` for the artifact. Set `artifact_path` to the workspace-relative artifact path, such as `Brain/Sources/Raw/domain/YYYY-MM-DD--slug.pdf`. The manifest and artifact are one immutable raw-source unit. Leave `artifact_path` empty for `locator-only` records.*
+*For a binary or local artifact, store the immutable artifact beside this Markdown manifest with the same dated slug and its original extension: `YYYY-MM-DD--slug.md` for the manifest and, for example, `YYYY-MM-DD--slug.pdf` for the artifact. Set `artifact_path` to the workspace-relative artifact path, such as `Engram/Sources/Raw/domain/YYYY-MM-DD--slug.pdf`. The manifest and artifact are one immutable raw-source unit. Leave `artifact_path` empty for `locator-only` records.*
 
 *Derived records own the one-way links to this manifest or its artifact. Do not edit the raw manifest later to add backlinks.*
 

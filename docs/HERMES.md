@@ -1,6 +1,6 @@
 # Hermes Agent integration
 
-Hermes can expose one Life Workspace across Desktop, CLI, Telegram, and IDE sessions. Markdown remains the durable store. Hermes memory should hold only small routing facts and stable preferences.
+Hermes can expose one Engram across Desktop, CLI, Telegram, and IDE sessions. Markdown remains the durable store. Hermes memory should hold only small routing facts and stable preferences.
 
 The Hermes documentation changes faster than this guide. Check the [official docs](https://hermes-agent.nousresearch.com/docs) when a command differs from your installed version.
 
@@ -9,13 +9,13 @@ The Hermes documentation changes faster than this guide. Check the [official doc
 Windows:
 
 ```bash
-hermes project create "Life Workspace" C:/workspace/Brain --use
+hermes project create "Engram" C:/workspace/Brain --use
 ```
 
 Linux or macOS:
 
 ```bash
-hermes project create "Life Workspace" /path/to/Brain --use
+hermes project create "Engram" /path/to/Brain --use
 ```
 
 To select an existing project, include its slug or ID:
@@ -31,7 +31,7 @@ Do not run bare `hermes project use`; current Hermes versions use that form to c
 Add the repository skill directory to the active Hermes profile:
 
 ```bash
-hermes config set skills.external_dirs 'C:/workspace/Brain/.agents/skills'
+hermes config set skills.external_dirs 'C:/workspace/Engram/.agents/skills'
 ```
 
 This setting is profile-scoped. If you already use other external skill directories, inspect the current value before replacing it.
@@ -47,13 +47,13 @@ Start a new session after changing startup configuration.
 
 ## Choose a working directory
 
-A dedicated Life Workspace profile can start inside the Brain:
+A dedicated Engram profile can start inside the Engram:
 
 ```bash
 hermes config set terminal.cwd 'C:/workspace/Brain'
 ```
 
-A general coding profile may keep a project-specific working directory instead. Store the canonical Brain path as a small Hermes memory fact so Life Workspace skills can resolve it when another repository is active.
+A general coding profile may keep a project-specific working directory instead. Store the canonical Brain path as a small Hermes memory fact so Engram skills can resolve it when another repository is active.
 
 ## Keep the memory layers separate
 
@@ -64,7 +64,7 @@ Hermes memory is appropriate for:
 - communication preferences;
 - small routing facts needed in every session.
 
-The Brain is appropriate for:
+The Engram is appropriate for:
 
 - evidence and sources;
 - decisions and rationale;
@@ -73,7 +73,7 @@ The Brain is appropriate for:
 - captures and session outcomes;
 - contradictions and supersession history.
 
-Do not copy the Brain into Hermes memory or `SOUL.md`. Both are startup context and should stay small.
+Do not copy the Engram into Hermes memory or `SOUL.md`. Both are startup context and should stay small.
 
 ## Telegram
 
@@ -128,14 +128,14 @@ Cron jobs and webhooks may run read-only checks, monitor sources, or prepare pro
 automation -> report or proposal -> user approval -> Sync
 ```
 
-Set the scheduled job's working directory to the Brain so Hermes loads `AGENTS.md`.
+Set the scheduled job's working directory to the Engram so Hermes loads `AGENTS.md`.
 
 ## Verify
 
 ```bash
 hermes doctor
 hermes tools --summary
-python Tools/brain.py status
-python Tools/brain.py lint
-python Tools/test_brain.py
+python Tools/engram.py status
+python Tools/engram.py lint
+python Tools/test_engram.py
 ```

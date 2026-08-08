@@ -1,6 +1,6 @@
 # Projects
 
-A project keeps current state, decisions, and unresolved work together without copying the application source tree into the Brain.
+A project keeps current state, decisions, and unresolved work together without copying the application source tree into the Engram.
 
 ## Suggested structure
 
@@ -19,7 +19,7 @@ The map can change while the project is being worked through. Changes to approve
 
 ## Source code
 
-Keep large source trees outside the Brain. Connect the code repository and the relevant Brain folder in the agent harness or IDE. This keeps search focused and lets the Brain stay portable.
+Keep large source trees outside the Engram. Connect the code repository and the relevant Brain folder in the agent harness or IDE. This keeps search focused and lets the Engram stay portable.
 
 ## Starting a project
 

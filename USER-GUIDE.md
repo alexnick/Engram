@@ -1,6 +1,6 @@
 # User Guide
 
-Life Workspace is a Markdown knowledge base maintained with an AI agent. It stores evidence, current understanding, decisions, and project state without treating chat history as permanent memory.
+Engram is a Markdown knowledge base maintained with an AI agent. It stores evidence, current understanding, decisions, and project state without treating chat history as permanent memory.
 
 ## The three layers
 
@@ -58,7 +58,7 @@ Save this exactly: not every efficiency improvement makes a game better.
 
 Capture writes the raw payload immediately because the request itself grants permission to preserve it. It may add light metadata and a search hint. It must not rewrite, translate, or promote the statement into accepted knowledge.
 
-Ordinary captures go to `Brain/Inbox/`. Explicit health captures go to `Brain/Health/Inbox/`.
+Ordinary captures go to `Engram/Inbox/`. Explicit health captures go to `Engram/Health/Inbox/`.
 
 ## Project Map
 
@@ -88,7 +88,7 @@ Use Explore when the question is still fuzzy.
 Help me understand when optimization reduces meaningful player choice. Ask one question at a time.
 ```
 
-Explore loads only relevant context and may maintain a temporary note in `Brain/Sessions/`. The note records the working model, not a transcript. Conclusions remain provisional until Sync.
+Explore loads only relevant context and may maintain a temporary note in `Engram/Sessions/`. The note records the working model, not a transcript. Conclusions remain provisional until Sync.
 
 ## Grilling
 
@@ -98,7 +98,7 @@ Use Grilling when a plan is ready for a hard review.
 Grill me on this architecture until every unresolved dependency is visible.
 ```
 
-The agent works through a dependency tree in rounds, recommends answers, and asks the user to make the actual decisions. Grilling is conversation-only. Nothing enters the Brain until the user confirms shared understanding and approves a Sync proposal.
+The agent works through a dependency tree in rounds, recommends answers, and asks the user to make the actual decisions. Grilling is conversation-only. Nothing enters the Engram until the user confirms shared understanding and approves a Sync proposal.
 
 ## Ingest
 
@@ -123,13 +123,13 @@ Ingest does not have to create a Knowledge page. It should do so only when the s
 
 ## Query
 
-Query reads the Brain without changing it.
+Query reads the Engram without changing it.
 
 ```text
-What has the Brain decided about Git checkpoints? Cite the decision and current context.
+What has the Engram decided about Git checkpoints? Cite the decision and current context.
 ```
 
-The agent starts with `CONTEXT-MAP.md`, uses `Brain/INDEX.md` to locate relevant pages, and reads raw evidence only when exact wording or provenance matters.
+The agent starts with `CONTEXT-MAP.md`, uses `Engram/INDEX.md` to locate relevant pages, and reads raw evidence only when exact wording or provenance matters.
 
 A good answer distinguishes:
 
@@ -145,7 +145,7 @@ The Index and Log help discovery, but they are not evidence for a substantive cl
 Sync is the boundary between discussion and durable meaning.
 
 ```text
-Propose the Brain changes from this conversation. Show the files and claims first.
+Propose the Engram changes from this conversation. Show the files and claims first.
 ```
 
 The agent should:
@@ -155,7 +155,7 @@ The agent should:
 3. wait for approval;
 4. apply only the approved items;
 5. repair links and refresh the Index;
-6. append a short, non-sensitive operation entry to `Brain/LOG.md`.
+6. append a short, non-sensitive operation entry to `Engram/LOG.md`.
 
 Agreement with an idea is not approval to write. Approval applies to the current proposal.
 
@@ -174,13 +174,13 @@ The report is read-only. Promotion, merging, archiving, deletion, or project upd
 Lint checks the workspace without repairing it.
 
 ```text
-Audit the Brain for broken links, stale claims, missing provenance, and raw/derived mixing.
+Audit the Engram for broken links, stale claims, missing provenance, and raw/derived mixing.
 ```
 
 Run the deterministic check first:
 
 ```bash
-python Tools/brain.py lint
+python Tools/engram.py lint
 ```
 
 Semantic findings should be reported separately. Fixes that change meaning go through Sync.
@@ -195,7 +195,7 @@ Propose a checkpoint for the approved architecture update. Exclude unrelated fil
 
 The default is proposal-only. Before a commit, the agent must inspect every staged path and stop if any staged work falls outside the approved scope. It must not reset, clean, amend, or hide unrelated work.
 
-Use `Brain/LOG.md` to find an operation and Git to inspect the actual file history.
+Use `Engram/LOG.md` to find an operation and Git to inspect the actual file history.
 
 ## Project files
 
@@ -206,7 +206,7 @@ A project usually contains:
 - `PROJECT-MAP.md` for navigation across unresolved work;
 - optional specs, research, and implementation plans.
 
-Keep large source-code repositories outside the Brain. Connect them through the agent harness or IDE instead.
+Keep large source-code repositories outside the Engram. Connect them through the agent harness or IDE instead.
 
 ## Language
 
@@ -220,8 +220,8 @@ The product, system files, generated examples, and default agent responses are E
 - Creating a new page when an existing canonical page should be updated.
 - Editing raw payloads or source manifests after creation.
 - Mixing source claims, user interpretation, and agent inference.
-- Editing `Brain/INDEX.md` by hand.
+- Editing `Engram/INDEX.md` by hand.
 - Expecting Lint to repair semantic problems automatically.
 - Committing every small capture instead of checkpointing at useful boundaries.
 
-For storage rules and edge cases, read the [Life Workspace Protocol](Protocols/Life-Workspace-Protocol.md).
+For storage rules and edge cases, read the [Engram Protocol](Protocols/Engram-Protocol.md).

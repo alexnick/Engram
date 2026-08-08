@@ -19,4 +19,4 @@ If the user asks to slow down or drop the batching (for this session or generall
 
 ## Ephemeral by design
 
-This skill never writes a persistent Brain file, including no session-note entity. The design tree and frontier live only in the conversation. Once the frontier is empty and the user confirms shared understanding, hand off to `sync-brain` to write anything durable.
+This skill never writes a persistent Brain file, including no session-note entity. The design tree and frontier live only in the conversation. Once the frontier is empty and the user confirms shared understanding, hand off to `sync-engram` to write anything durable.

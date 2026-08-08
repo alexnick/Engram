@@ -23,11 +23,11 @@ An explicit user request to Explore authorizes creation and updates of only that
 
 ## Startup
 
-1. Read `CONTEXT-MAP.md`, then use `Brain/INDEX.md` to locate relevant material.
+1. Read `CONTEXT-MAP.md`, then use `Engram/INDEX.md` to locate relevant material.
 2. Read root and local context plus clearly relevant captures, Knowledge, decisions, projects, and source records.
 3. Read raw evidence only when provenance or exact wording matters. Do not scan the entire Brain.
 4. Briefly tell the user what relevant material was found, using real Markdown citations.
-5. Under the narrow Explore authorization, create `Brain/Sessions/YYYY-MM-DD-HHmm--topic.md` as a structured temporary session note with `type`, `status`, `created`, `updated`, `topic`, `related_contexts`, and `source_captures` metadata.
+5. Under the narrow Explore authorization, create `Engram/Sessions/YYYY-MM-DD-HHmm--topic.md` as a structured temporary session note with `type`, `status`, `created`, `updated`, `topic`, `related_contexts`, and `source_captures` metadata.
 
 The session note is non-authoritative and is not a transcript. Store only the objective, current understanding, assumptions, constraints, questions, provisional conclusions, and unresolved branches.
 
