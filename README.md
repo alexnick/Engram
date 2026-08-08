@@ -16,7 +16,7 @@ Life Workspace keeps three things separate:
 
 > Conversation is temporary. Durable meaning enters the Brain through an explicit operation.
 
-This is an implementation of the LLM Wiki idea: a maintained knowledge base that compounds over time instead of a pile of transcripts that must be re-read from scratch.
+This is an implementation of the [LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) idea, originally proposed by Andrej Karpathy: a maintained knowledge base that compounds over time instead of a pile of transcripts that must be re-read from scratch.
 
 ## Core operations
 
@@ -107,6 +107,13 @@ For Hermes Agent, see [docs/HERMES.md](docs/HERMES.md).
 - [Hermes integration](docs/HERMES.md)
 - [Maintainer guide](docs/MAINTAINING.md)
 - [Changelog](CHANGELOG.md)
+
+## Acknowledgements
+
+Life Workspace stands on existing ideas we learned from and adapted:
+
+- **[LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)** by [Andrej Karpathy](https://karpathy.bearblog.dev/) — the core architecture of an LLM-maintained Markdown knowledge base with immutable raw sources, a derived wiki, and Ingest/Query/Lint operations. Life Workspace is a direct implementation of this idea.
+- **[mattpocock/skills](https://github.com/mattpocock/skills)** by [Matt Pocock](https://github.com/mattpocock) — the grilling pattern (interviewing in dependency-ordered rounds over a design tree) inspired the `grilling` skill, and the `teach` skill was adopted on trial from the same repository.
 
 ## Status
 

@@ -8,6 +8,7 @@ The project is still pre-release. Earlier work is summarized from the product hi
 
 ### Added
 
+- README acknowledgement section crediting Andrej Karpathy's LLM Wiki gist and Matt Pocock's skills repository as the sources of the core architecture and the grilling skill.
 - Harness-agnostic product maintenance skill for synchronizing reusable changes without copying private Brain content.
 - Hermes Agent setup guide for Desktop, CLI, Telegram, global skills, and bounded memory.
 - Explicit two-repository maintenance model: clean product core and protected private workspaces.
