@@ -9,4 +9,6 @@ Before substantial work in this repository:
 3. Read `QUICKSTART-RU.md` for the shortest Russian onboarding guide.
 4. Follow the Life Workspace protocol and approval boundaries.
 
-This root `AGENTS.md` exists for agent shells such as Antigravity that discover instructions from the workspace root.
+This root `AGENTS.md` is the portable entry point for Hermes, IDE agents, and other harnesses that discover instructions from the workspace root.
+
+When reusable skills, workflows, protocols, templates, tools, or public documentation change, read `PRODUCT-UPDATE-WORKFLOW.md` and maintain `CHANGELOG.md`. Never copy private Brain content into the product repository.

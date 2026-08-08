@@ -14,4 +14,6 @@ Brain-Product is the clean source of truth for product/core. User Brain reposito
 4. Sync only allowlisted product/core paths.
 5. Run privacy grep and validation.
 6. Present diff summary and validation results.
-7. Commit/push only after explicit approval.
+7. Update README, onboarding, and `CHANGELOG.md` for user-visible changes.
+8. Commit/push only after explicit approval.
+9. Propagate the reviewed product allowlist into maintained private Brains and validate each repository separately.

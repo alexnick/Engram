@@ -34,3 +34,6 @@ node_modules/
 __pycache__/
 *.py[cod]
 *.log
+
+# Hermes transient command/runtime files
+.hermes-tmp.*/

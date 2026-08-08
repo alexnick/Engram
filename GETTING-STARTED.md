@@ -45,3 +45,9 @@ python Tools/test_brain.py
 - Do not rewrite raw captures or raw source manifests.
 - Use Git checkpoints after meaningful approved changes, not after every capture.
 - Keep application source code outside this Brain unless there is a deliberate reason to reference it.
+
+## Harness setup
+
+- Agent shells should start from [AGENTS.md](AGENTS.md).
+- Hermes users can expose the repository skills across Desktop, CLI, Telegram, and IDE sessions with [HERMES-SETUP.md](HERMES-SETUP.md).
+- Maintainers should use [PRODUCT-UPDATE-WORKFLOW.md](PRODUCT-UPDATE-WORKFLOW.md) and update [CHANGELOG.md](CHANGELOG.md) for reusable changes.

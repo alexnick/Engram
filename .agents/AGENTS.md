@@ -110,3 +110,4 @@ Do not ask whether to save after every message. Use the impact thresholds in the
 * `review-brain`: run an Inbox-oriented review and route approved actions through Sync;
 * `lint-brain`: run deterministic and semantic checks as a read-only report;
 * `checkpoint-brain`: propose or create an explicit Git audit checkpoint without hidden commits.
+* `maintain-life-workspace-product`: keep reusable skills, workflows, tools, and public documentation synchronized between the clean product repository and private Brains without copying protected content.

@@ -10,6 +10,7 @@ from pathlib import Path
 from urllib.parse import unquote
 
 import brain  # pyright: ignore[reportImplicitRelativeImport]
+import product_sync  # pyright: ignore[reportImplicitRelativeImport]
 
 
 class FrontmatterParserTests(unittest.TestCase):
@@ -296,6 +297,28 @@ class LogTests(unittest.TestCase):
                 brain.append_log(root, operation="sync", title="Title", note="n" * 241)
 
             self.assertFalse((root / "Brain" / "LOG.md").exists())
+
+
+class ProductSyncTests(unittest.TestCase):
+    def test_directory_copy_preserves_target_specific_files(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            source = root / "source"
+            target = root / "target"
+            (source / "Templates").mkdir(parents=True)
+            (target / "Templates").mkdir(parents=True)
+            (source / "Templates" / "Product.md").write_text("product\n", encoding="utf-8")
+            private_file = target / "Templates" / "Private.md"
+            private_file.write_text("private\n", encoding="utf-8")
+
+            result = product_sync.copy_path(source, target, "Templates", dry_run=False)
+
+            self.assertEqual(result, "copied: Templates")
+            self.assertEqual(
+                (target / "Templates" / "Product.md").read_text(encoding="utf-8"),
+                "product\n",
+            )
+            self.assertEqual(private_file.read_text(encoding="utf-8"), "private\n")
 
 
 if __name__ == "__main__":

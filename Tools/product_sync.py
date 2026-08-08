@@ -23,6 +23,7 @@ ALLOWLIST = [
     '.agents/skills/grilling',
     '.agents/skills/ingest-source',
     '.agents/skills/lint-brain',
+    '.agents/skills/maintain-life-workspace-product',
     '.agents/skills/project-map',
     '.agents/skills/query-brain',
     '.agents/skills/review-brain',
@@ -39,6 +40,8 @@ ALLOWLIST = [
     'USER-GUIDE.md',
     'GETTING-STARTED.md',
     'QUICKSTART-RU.md',
+    'HERMES-SETUP.md',
+    'CHANGELOG.md',
     'PRODUCT-UPDATE-WORKFLOW.md',
     'AGENTS.md',
     '.gitignore',
@@ -84,9 +87,12 @@ def copy_path(source_root: Path, target_root: Path, item: str, dry_run: bool) ->
         return f'would copy: {item}'
 
     if source.is_dir():
-        if target.exists():
-            shutil.rmtree(target)
-        shutil.copytree(source, target, ignore=shutil.ignore_patterns(*IGNORE_NAMES, '*.pyc', '*.pyo'))
+        shutil.copytree(
+            source,
+            target,
+            dirs_exist_ok=True,
+            ignore=shutil.ignore_patterns(*IGNORE_NAMES, '*.pyc', '*.pyo'),
+        )
     else:
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source, target)
