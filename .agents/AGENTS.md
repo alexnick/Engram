@@ -35,7 +35,7 @@ Never rewrite, normalize, translate, summarize in place, or silently correct a r
 
 ### Editable derived wiki
 
-Contexts, Ideas, Knowledge pages, source records under `Brain/Sources/Records/`, and current-state summaries are derived models. They may be revised after approval when understanding changes. Preserve provenance and significant supersession history.
+Contexts, Knowledge pages, source records under `Brain/Sources/Records/`, and current-state summaries are derived models. They may be revised after approval when understanding changes. Preserve provenance and significant supersession history.
 
 ## Claim Authority
 
@@ -60,6 +60,8 @@ An explicit Explore request narrowly authorizes creation and updates of its temp
 An explicit Grilling request authorizes only in-conversation scratch working memory (a design tree and its frontier) for the duration of that session. Grilling does not write any persistent Brain file, including no session-note entity. It never acts on its conclusions until the user confirms the frontier is empty and shared understanding is reached; after that confirmation, results are written only through Sync.
 
 An explicit Project Map request authorizes creation and updates of the project's map and map-ticket working artifacts. These are navigation and planning layers, not canonical specs. Consequential project semantics still require Sync approval before promotion into project context, decision records, canonical design specs, source records, or implementation plans.
+
+An explicit Teach request authorizes only the named `Learning/<Topic>/` working area for that teaching engagement. These notes track the curriculum and progress; they do not update canonical Knowledge, preferences, personal context, or project state without Sync approval.
 
 The following semantic changes require a proposal and user approval before writing:
 
@@ -88,9 +90,9 @@ If a maintenance edit would imply a new relationship, status, conclusion, or hea
 
 ## Context and Writing Behavior
 
-`CONTEXT.md` files represent current approved state, not chat summaries or chronological diaries. Decision files preserve consequential choices. Source records preserve provenance and source-specific analysis. Knowledge pages contain reusable understanding. Ideas remain provisional. Session notes are temporary structured working memory, not transcripts. Project maps are navigation and decision-planning layers for large projects; they point to canonical specs and decisions rather than replacing them.
+`CONTEXT.md` files represent current approved state, not chat summaries or chronological diaries. Decision files preserve consequential choices. Source records preserve provenance and source-specific analysis. Knowledge pages contain reusable understanding; unresolved ideas use provisional Knowledge status. Session notes are temporary structured working memory, not transcripts. Project maps are navigation and decision-planning layers for large projects; they point to canonical specs and decisions rather than replacing them.
 
-Reply in the user's language. Keep system documents in English. Preserve user knowledge in its original language unless translation is requested. Search relevant terms in both Russian and English when useful.
+Default to English. Use another conversation language only when the user asks for it or the active profile explicitly requires it. Keep product files, system documents, generated headings, and examples in English. Preserve raw user material in the language received and search original terms plus useful English equivalents when needed.
 
 Use clear Markdown and valid YAML frontmatter where required. Do not invent citations, dates, measurements, filenames, medical values, quotations, or source locations.
 

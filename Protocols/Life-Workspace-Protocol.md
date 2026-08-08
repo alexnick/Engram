@@ -23,7 +23,7 @@ Append-only raw evidence preserves input and provenance. The editable derived wi
 
 Raw evidence includes capture payloads, source artifacts and locator manifests, dated raw health evidence, and existing operational log entries. Never rewrite raw payloads. Correct them with append-only addenda, superseding records, or derived interpretation.
 
-Derived contexts, Ideas, Knowledge pages, source records, and summaries may be edited after approval. A derived page must retain links to the evidence that supports it.
+Derived contexts, Knowledge pages, source records, and summaries may be edited after approval. Early ideas use provisional Knowledge status rather than a separate entity type. A derived page must retain links to the evidence that supports it.
 
 ### Update canonical models, not diaries
 
@@ -56,6 +56,8 @@ An explicit Explore request narrowly authorizes creation and updates of that Exp
 
 An explicit Project Map request authorizes creation and updates of project-map and map-ticket working artifacts for the named effort. These artifacts are navigation and planning layers. They may organize frontier questions, fog, blocked items, and out-of-scope boundaries, but they do not promote project semantics into canonical specs, decisions, or context without Sync approval.
 
+An explicit Teach request authorizes only the named `Learning/<Topic>/` working area for that teaching engagement. Curriculum and progress notes in that area are non-canonical. Changes to durable Knowledge, preferences, personal context, or project state still require Sync approval.
+
 Semantic writes require a preview and approval. This includes changes to claims, interpretations, decisions, preferences, context, project meaning, or health interpretation, and all merge, archive, delete, replacement, and supersession operations.
 
 Safe service maintenance may run without separate material approval when it does not change meaning: complete index entries, constrained non-sensitive operational log entries, real links, reciprocal backlinks between editable derived pages, non-semantic metadata, and lint reports.
@@ -86,7 +88,7 @@ Operational log entries may contain only the date, operation type, a short non-s
 
 ### Links and backlinks
 
-Prefer standard Markdown links with real relative paths: `[Title](relative/path.md)`. Do not use unresolvable pseudo-links as the primary relationship mechanism. Add reciprocal backlinks only between editable derived pages when they improve navigation or provenance. A derived source record links one-way to its immutable raw manifest; never require or add a backlink to the manifest after creation.
+Prefer standard Markdown links with real relative paths. Do not use unresolvable pseudo-links as the primary relationship mechanism. Add reciprocal backlinks only between editable derived pages when they improve navigation or provenance. A derived source record links one-way to its immutable raw manifest; never require or add a backlink to the manifest after creation.
 
 A link is maintenance only when it records an already-established relationship. If adding the link asserts a new semantic relationship, include it in the approval proposal.
 
@@ -183,11 +185,12 @@ Do not silently diagnose, alter dosages, merge conflicting records, or include s
 
 ## Language Policy
 
-* System files, protocols, skills, workflows, and templates: English
-* User knowledge: original language
-* Conversation: user's language
-* Generated notes: language of the underlying thought unless translation is requested
-* Search: original terms and useful cross-language equivalents
+* Product files, protocols, skills, workflows, templates, generated headings, and examples: English
+* Default conversation language: English
+* Other conversation languages: only when the user requests one or the active profile configures one
+* Raw user material: preserve the language received
+* Derived pages: English by default; use another language only for an explicit workspace need
+* Search: original terms and useful English equivalents
 
 ## Project Integration
 

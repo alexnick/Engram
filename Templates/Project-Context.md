@@ -4,7 +4,7 @@ project: "[Project Name]"
 status: active # planning, active, paused, completed, archived
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
-language: unknown
+language: en
 related_sources: []
 ---
 
@@ -43,7 +43,7 @@ related_sources: []
 
 ## Relevant Knowledge and Sources
 
-*Links to Knowledge, source records, Entities, Events, and Ideas relevant to the project.*
+*Links to Knowledge, source records, Entities, Events, and Decisions relevant to the project.*
 
 ## External Source Location
 

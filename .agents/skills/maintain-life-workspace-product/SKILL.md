@@ -15,7 +15,7 @@ Keep the clean Life Workspace product and private Brain instances aligned withou
 - **Private Brains** contain personal and project state. They consume product updates and may prototype reusable improvements.
 - A private Brain becomes a product source only when the user explicitly asks to promote selected reusable changes.
 
-Read `PRODUCT-UPDATE-WORKFLOW.md` before changing either side.
+Read `docs/MAINTAINING.md` before changing either side.
 
 ## Classification
 

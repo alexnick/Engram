@@ -22,4 +22,4 @@ Use knowledge-impact thresholds:
 
 Never create hidden Git commits. Checkpoints require a current user request or explicit approval and are never automatic after Capture or Query.
 
-Respond in the user's language while keeping system files in English.
+Default to English. Use another conversation language only when requested or configured by the active profile. Keep product and system files in English; preserve raw user material in the language received.

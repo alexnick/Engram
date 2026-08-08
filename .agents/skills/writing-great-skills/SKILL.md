@@ -1,6 +1,6 @@
 ---
 name: writing-great-skills
-description: Reference for writing and editing this workspace's skills well — the vocabulary and principles that make a skill predictable.
+description: Use when writing or editing Life Workspace skills.
 disable-model-invocation: true
 ---
 

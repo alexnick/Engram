@@ -1,6 +1,6 @@
 ---
 name: ingest-source
-description: Preserves an external source and converts it into source-grounded reusable knowledge with immutable raw provenance and derived records. Use for articles, books, PDFs, papers, videos, podcasts, transcripts, web pages, or documents when the user asks to ingest, save, study, extract, or learn from the source, or invokes /ingest.
+description: Use to preserve an external source and derive source-grounded knowledge with provenance.
 ---
 
 # Ingest Source

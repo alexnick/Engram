@@ -87,10 +87,10 @@ class IndexTests(unittest.TestCase):
     def test_index_check_detects_stale_content_without_writing(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
-            (root / "Brain" / "Ideas").mkdir(parents=True)
+            (root / "Brain" / "Knowledge").mkdir(parents=True)
             (root / "Projects").mkdir()
-            (root / "Brain" / "Ideas" / "idea.md").write_text(
-                "# Idea\n\nSummary.\n", encoding="utf-8"
+            (root / "Brain" / "Knowledge" / "note.md").write_text(
+                "# Knowledge\n\nSummary.\n", encoding="utf-8"
             )
             index_path = root / "Brain" / "INDEX.md"
             index_path.write_text("stale\n", encoding="utf-8")
@@ -105,13 +105,31 @@ class IndexTests(unittest.TestCase):
 
 
 class LintTests(unittest.TestCase):
+    def test_non_english_provenance_heading_is_supported_without_changing_defaults(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            knowledge = root / "Brain" / "Knowledge"
+            knowledge.mkdir(parents=True)
+            (root / "Projects").mkdir()
+            heading = "\u041f\u0440\u043e\u0438\u0441\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u0435"
+            note = knowledge / "note.md"
+            note.write_text(
+                "---\ntype: knowledge\nstatus: active\n---\n\n"
+                f"# Note\n\n## {heading}\n\nUser-provided source record.\n",
+                encoding="utf-8",
+            )
+
+            issues = brain.lint_workspace(root)
+
+            self.assertFalse([issue for issue in issues if "provenance" in issue.message])
+
     def test_broken_relative_link_is_an_error(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
-            ideas = root / "Brain" / "Ideas"
+            knowledge = root / "Brain" / "Knowledge"
             (root / "Projects").mkdir(parents=True)
-            ideas.mkdir(parents=True)
-            note = ideas / "note.md"
+            knowledge.mkdir(parents=True)
+            note = knowledge / "note.md"
             note.write_text(
                 "# Note\n\n[Missing document](missing.md)\n", encoding="utf-8"
             )
@@ -140,11 +158,11 @@ class LintTests(unittest.TestCase):
     def test_external_and_existing_relative_links_pass(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
-            ideas = root / "Brain" / "Ideas"
+            knowledge = root / "Brain" / "Knowledge"
             (root / "Projects").mkdir(parents=True)
-            ideas.mkdir(parents=True)
-            (ideas / "target.md").write_text("# Target\n", encoding="utf-8")
-            (ideas / "note.md").write_text(
+            knowledge.mkdir(parents=True)
+            (knowledge / "target.md").write_text("# Target\n", encoding="utf-8")
+            (knowledge / "note.md").write_text(
                 "# Note\n\n[Target](target.md) and [Web](https://example.com).\n",
                 encoding="utf-8",
             )
@@ -300,6 +318,24 @@ class LogTests(unittest.TestCase):
 
 
 class ProductSyncTests(unittest.TestCase):
+    def test_identical_roots_are_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+
+            with self.assertRaisesRegex(ValueError, "must be different"):
+                product_sync.validate_roots(root, root)
+
+    def test_nested_roots_are_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            child = root / "child"
+            child.mkdir()
+
+            with self.assertRaisesRegex(ValueError, "must not be nested"):
+                product_sync.validate_roots(root, child)
+            with self.assertRaisesRegex(ValueError, "must not be nested"):
+                product_sync.validate_roots(child, root)
+
     def test_directory_copy_preserves_target_specific_files(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)

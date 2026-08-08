@@ -2,130 +2,112 @@
 
 **A durable Markdown brain for AI agents.**
 
-Chats disappear. Useful context should not.
+Chats are useful for thinking. They are a poor place to keep decisions, evidence, and project context.
 
-Life Workspace is a small set of files, rules, and agent skills for maintaining knowledge across conversations. It preserves what was actually said or received, keeps current understanding editable, records why decisions were made, and gives every agent a predictable way to read and update the workspace.
-
-It is inspired by the LLM Wiki pattern, but treats memory as a controlled knowledge-maintenance problem rather than a transcript archive.
+Life Workspace gives an AI agent a small, explicit system for maintaining knowledge across conversations. Markdown holds the state. Git keeps the history. Skills define how information enters, changes, and leaves the workspace.
 
 ## The model
 
-Life Workspace separates three things that chat systems often blur together:
+Life Workspace keeps three things separate:
 
-1. **Raw evidence** — exact captures, source artifacts, locator manifests, and dated records. Raw payloads are append-only.
-2. **Derived knowledge** — contexts, knowledge pages, decisions, entities, events, source records, and project documents. These can change as understanding improves.
-3. **Operations** — explicit workflows that preserve, develop, query, review, and update the workspace.
-
-The central rule is simple:
+1. **Raw evidence** preserves what was actually said, received, or observed. Captures and source artifacts are append-only.
+2. **Derived knowledge** holds the current working model: context, knowledge, decisions, entities, events, source records, and project documents.
+3. **Operations** control the movement between them. An agent can preserve raw input immediately, but it must show a proposal before changing durable meaning.
 
 > Conversation is temporary. Durable meaning enters the Brain through an explicit operation.
 
-Raw input can be preserved immediately. Semantic changes to knowledge, decisions, or context are proposed first and written only after approval.
+This is an implementation of the LLM Wiki idea: a maintained knowledge base that compounds over time instead of a pile of transcripts that must be re-read from scratch.
 
-## What the skills do
+## Core operations
 
-| Skill | Purpose |
+| Operation | Use it to |
 |---|---|
-| `capture` | Preserve exact wording with almost no friction. |
-| `project-map` | Navigate a large multi-session project through decisions, dependencies, fog, and open frontiers. |
-| `explore` | Develop a fuzzy idea one question at a time, with a temporary session note. |
-| `grilling` | Pressure-test a plan in dependency-ordered rounds without writing persistent state. |
-| `ingest-source` | Preserve source provenance and derive source-grounded knowledge. |
-| `query-brain` | Answer from durable pages with claim-level citations and explicit epistemic labels. |
-| `sync-brain` | Preview and apply approved semantic changes. |
-| `review-brain` | Process the Inbox in small, reviewable batches. |
-| `lint-brain` | Audit structure and semantic drift without modifying files. |
-| `checkpoint-brain` | Propose a scoped Git checkpoint for rollback and audit. |
-| `maintain-life-workspace-product` | Keep reusable product changes synchronized without copying private content. |
+| `capture` | Preserve exact wording before it gets lost. |
+| `project-map` | Work through a large project across many sessions. |
+| `explore` | Develop an unclear idea one question at a time. |
+| `grilling` | Pressure-test a plan or decision. |
+| `ingest-source` | Preserve a source and extract grounded claims from it. |
+| `query-brain` | Answer from the Brain with links to the pages used. |
+| `sync-brain` | Preview and apply approved changes to durable knowledge. |
+| `review-brain` | Process unhandled captures in small batches. |
+| `lint-brain` | Check structure and semantic drift without editing files. |
+| `checkpoint-brain` | Create a deliberate Git checkpoint after approval. |
 
-You do not need to remember the skill names. Describe the outcome in normal language; the agent should route the request.
+You do not need to memorize these names. Describe what you want in plain English and let the agent route the request.
+
+## Try it
+
+```bash
+git clone https://github.com/alexnick/keeper.git life-workspace
+cd life-workspace
+python Tools/brain.py status
+python Tools/brain.py lint
+```
+
+Open the folder in an agent harness that reads `AGENTS.md`, then say:
+
+```text
+Save this exact thought: a useful memory system should preserve evidence without turning every thought into a fact.
+```
+
+Next:
+
+```text
+What does the Brain know about memory systems?
+```
+
+When a discussion produces a decision or reusable insight:
+
+```text
+Show me what you would update in the Brain. Do not write it until I approve the proposal.
+```
+
+See [Quickstart](QUICKSTART.md) for the full first-use loop.
 
 ## Repository layout
 
 ```text
 Life Workspace/
-├── AGENTS.md               # portable agent entry point
+├── AGENTS.md               portable entry point for agents
 ├── .agents/
-│   ├── AGENTS.md           # full agent contract
-│   ├── skills/             # reusable workflows
-│   └── workflows/          # slash-command adapters
-├── Brain/                  # durable personal knowledge
-│   ├── Inbox/              # raw captures
-│   ├── Knowledge/          # maintained reusable knowledge
-│   ├── Sources/            # immutable raw + editable records
-│   ├── Sessions/           # temporary Explore state
-│   ├── INDEX.md            # generated catalog
-│   └── LOG.md              # append-only operation trail
-├── Projects/               # project context, decisions, maps, and specs
-├── Protocols/              # storage and approval rules
-├── Templates/              # schemas for durable records
-└── Tools/brain.py          # dependency-free index, status, lint, and log CLI
+│   ├── AGENTS.md           agent contract
+│   ├── skills/             reusable operations
+│   └── workflows/          command adapters
+├── Brain/                  personal knowledge and evidence
+├── Projects/               project context, maps, and decisions
+├── Protocols/              storage and approval rules
+├── Templates/              record schemas
+└── Tools/brain.py          index, status, lint, and log CLI
 ```
 
-## Quick start
+The public repository contains an empty starter Brain. Your private Brain contains your actual captures, projects, sources, and personal context.
 
-1. Clone the repository.
-2. Open it in an agent harness that reads `AGENTS.md`.
-3. Ask the agent to initialize or inspect the workspace.
-4. Try the operating loop:
+## Why the boundaries matter
 
-```text
-/capture This is a thought I do not want to lose.
-/query What does the Brain know about it?
-/explore Help me develop the idea.
-/sync
-```
+- Raw text is never silently cleaned up or rewritten.
+- A source claim does not become a fact because an agent summarized it.
+- User interpretation and agent inference stay labeled.
+- Indexes and logs help discovery; they are not evidence.
+- Review and Lint report findings without silently repairing knowledge.
+- Semantic writes require a concrete proposal and approval.
+- Git checkpoints are scoped and deliberate.
 
-Useful local checks:
+## Agent integration
 
-```bash
-python Tools/brain.py status
-python Tools/brain.py index
-python Tools/brain.py lint
-python Tools/test_brain.py
-```
+The format is harness-independent. Any agent that can read Markdown and follow `AGENTS.md` can use it. The same Brain can be opened from an IDE, a terminal agent, or a chat gateway without moving knowledge into that tool's private memory.
 
-For a guided setup, see [Getting Started](GETTING-STARTED.md). Russian onboarding is available in [QUICKSTART-RU.md](QUICKSTART-RU.md) and [USER-GUIDE.md](USER-GUIDE.md).
-
-## Agent and harness integration
-
-The workspace is deliberately harness-agnostic:
-
-- `AGENTS.md` provides the portable entry point;
-- `.agents/skills/` contains reusable skill documents;
-- Markdown remains the source of truth;
-- Git provides history and rollback;
-- application code can stay in separate repositories.
-
-Hermes Agent can expose the same skills in Desktop, CLI, Telegram, and IDE sessions. See [Hermes Setup](HERMES-SETUP.md).
-
-## Safe by design
-
-- Raw payloads are never silently rewritten.
-- A source claim is not automatically a fact.
-- User interpretation and agent inference remain labeled.
-- Indexes and logs help discovery but do not outrank evidence.
-- Review and Lint report findings; they do not silently repair semantic state.
-- Checkpoints are deliberate and scoped.
-- Private Brain content is not part of the reusable product core.
-
-## Product and private workspaces
-
-The clean product repository contains reusable skills, protocols, templates, tools, and starter files. A private Brain may contain personal context, project records, health data, captures, and source material.
-
-Reusable improvements can move from private experimentation into the product, but only through an allowlisted, reviewed sync. Product updates move back into private Brains without overwriting protected user data.
-
-See [Product Update Workflow](PRODUCT-UPDATE-WORKFLOW.md) and [Changelog](CHANGELOG.md).
+For Hermes Agent, see [docs/HERMES.md](docs/HERMES.md).
 
 ## Documentation
 
-- [Getting Started](GETTING-STARTED.md)
+- [Quickstart](QUICKSTART.md)
 - [User Guide](USER-GUIDE.md)
-- [Life Workspace Protocol](Protocols/Life-Workspace-Protocol.md)
-- [Hermes Setup](HERMES-SETUP.md)
-- [Product Update Workflow](PRODUCT-UPDATE-WORKFLOW.md)
+- [Protocol](Protocols/Life-Workspace-Protocol.md)
+- [Project conventions](docs/PROJECTS.md)
+- [Hermes integration](docs/HERMES.md)
+- [Maintainer guide](docs/MAINTAINING.md)
 - [Changelog](CHANGELOG.md)
 
 ## Status
 
-Life Workspace is usable and under active design. The current focus is real-world validation: whether the workflows stay understandable, safe, and lightweight as the Brain grows across years and projects.
+Life Workspace is usable and still evolving. Current work focuses on keeping the system understandable and safe as a Brain grows across years, projects, and agent harnesses.

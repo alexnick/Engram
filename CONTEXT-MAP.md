@@ -19,7 +19,7 @@ This is the small routing map for the Life Workspace. Keep it short; use `Brain/
 - [Entities](Brain/Entities/) — people, organizations, places, products, concepts, and other durable objects.
 - [Events](Brain/Events/) — dated things that happened.
 - [Sources](Brain/Sources/) — raw source provenance and derived source records.
-- [Projects](Projects/) — project-specific contexts, maps, decisions, and status.
+- [Projects](docs/PROJECTS.md) — conventions for project contexts, maps, decisions, and external source trees.
 - [Learning](Learning/) — optional learning workspaces.
 
 ## Maintenance

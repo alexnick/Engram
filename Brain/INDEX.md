@@ -9,8 +9,3 @@ This file is generated deterministically from `Brain/` and `Projects/`.
 ### Context
 - [Personal Brain Context](CONTEXT.md) — Last updated: YYYY-MM-DD
 - [Review State](.review-state.md) — Non-semantic state used by Review to notice Inbox changes between review passes.
-
-## Project: General
-
-### Documents
-- [Projects](../Projects/README.md) — This directory contains workspace projects.

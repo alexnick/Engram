@@ -1,6 +1,6 @@
 ---
 name: query-brain
-description: Answers questions from the Life Workspace using progressive context loading, claim-level Markdown citations, and explicit separation of durable state, source claims, user interpretation, and agent inference. Use when the user asks what the Brain knows, wants recalled decisions or evidence, asks a cross-workspace question, or invokes /query.
+description: Use to answer from the Brain with progressive loading and claim-level citations.
 ---
 
 # Query Brain
@@ -34,7 +34,7 @@ Do not recursively scan the Brain by default. If the map or index is missing or 
 
 ## Citations
 
-Use resolvable links such as `[Decision title](Brain/Decisions/example.md)` and include a section anchor when useful and reliable. Never cite `Brain/INDEX.md`, `CONTEXT-MAP.md`, or `Brain/LOG.md` as substantive evidence merely because they mention a page.
+Use resolvable links to actual decision or evidence pages and include a section anchor when useful and reliable. Never cite `Brain/INDEX.md`, `CONTEXT-MAP.md`, or `Brain/LOG.md` as substantive evidence merely because they mention a page.
 
 Do not invent citations or claim access to missing raw material.
 

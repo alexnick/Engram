@@ -3,7 +3,7 @@ type: capture
 status: unprocessed
 created: YYYY-MM-DDTHH:mm:ss
 content_time: unknown # exact date/time stated in the payload, when applicable
-language: unknown
+language: <detected ISO 639-1 code>
 topics: []
 possible_contexts: []
 origin_type: conversation # conversation, selected-text, local-file, voice, other

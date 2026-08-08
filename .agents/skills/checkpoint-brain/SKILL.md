@@ -1,6 +1,6 @@
 ---
 name: checkpoint-brain
-description: Proposes or creates an explicit, scoped Git checkpoint for rollback and audit after significant approved workspace changes. Use when the user asks to checkpoint or commit Brain changes, invokes /checkpoint, or when a high-impact Sync, completed ingest, schema migration, or approved review batch reaches a natural boundary.
+description: Use to propose or create a scoped Git checkpoint after meaningful approved changes.
 ---
 
 # Checkpoint Brain

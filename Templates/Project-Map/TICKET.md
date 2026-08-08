@@ -1,7 +1,7 @@
 ---
 type: project-map-ticket
 status: open
-ticket_type: grilling # explore | grilling | research | prototype | task
+ticket_type: <explore | grilling | research | prototype | task>
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
 project: Project Name
@@ -10,7 +10,7 @@ blocked_by: []
 language: en
 ---
 
-# WF-000 — Ticket title
+# PM-000 — Ticket title
 
 ## Question
 

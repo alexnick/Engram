@@ -1,6 +1,6 @@
 ---
 name: teach
-description: Teach the user a new skill or concept, within a per-topic Learning workspace. Trial status — revisit at the next Brain architecture pass.
+description: Use to teach a topic across sessions in a dedicated Learning workspace.
 disable-model-invocation: true
 argument-hint: "What would you like to learn about?"
 ---

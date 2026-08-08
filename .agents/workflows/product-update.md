@@ -8,7 +8,7 @@ Brain-Product is the clean source of truth for product/core. User Brain reposito
 
 ## Steps
 
-1. Read `PRODUCT-UPDATE-WORKFLOW.md`.
+1. Read `docs/MAINTAINING.md`.
 2. Inspect Git status in every repo in scope.
 3. Refuse to overwrite protected user-data paths unless the user approved a specific migration.
 4. Sync only allowlisted product/core paths.

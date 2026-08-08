@@ -1,6 +1,6 @@
 ---
 name: capture
-description: Preserves a raw thought, observation, fact, health record, or fragment immediately without rewriting its payload. Use when the user says save this, capture this, remember this, store this, do not lose this, invokes /capture, or clearly asks to put something into the Brain without developing it first.
+description: Use to preserve exact user input immediately without rewriting it.
 ---
 
 # Capture

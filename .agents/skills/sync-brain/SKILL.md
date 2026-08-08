@@ -1,6 +1,6 @@
 ---
 name: sync-brain
-description: Proposes and applies approved durable semantic changes after meaningful discussion, Explore, project decisions, corrected beliefs, health records, review actions, or source ingestion, then maintains links, index, and operational log. Use when the user asks to sync, update the Brain, preserve conclusions, update context, or invokes /sync.
+description: Use to propose and apply approved durable changes, then maintain links, index, and log.
 ---
 
 # Sync Brain

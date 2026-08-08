@@ -38,11 +38,9 @@ ALLOWLIST = [
     'Dashboards/HOME.md',
     'README.md',
     'USER-GUIDE.md',
-    'GETTING-STARTED.md',
-    'QUICKSTART-RU.md',
-    'HERMES-SETUP.md',
+    'QUICKSTART.md',
+    'docs',
     'CHANGELOG.md',
-    'PRODUCT-UPDATE-WORKFLOW.md',
     'AGENTS.md',
     '.gitignore',
 ]
@@ -72,6 +70,15 @@ IGNORE_NAMES = {'__pycache__', '.git', '.DS_Store'}
 def is_protected(path: str) -> bool:
     normalized = path.replace('\\', '/').rstrip('/')
     return any(normalized == p or normalized.startswith(p.rstrip('/') + '/') for p in PROTECTED_PREFIXES)
+
+
+def validate_roots(source_root: Path, target_root: Path) -> None:
+    if source_root.resolve() == target_root.resolve():
+        raise ValueError('source and target must be different checkouts')
+    source_resolved = source_root.resolve()
+    target_resolved = target_root.resolve()
+    if source_resolved in target_resolved.parents or target_resolved in source_resolved.parents:
+        raise ValueError('source and target must not be nested inside each other')
 
 
 def copy_path(source_root: Path, target_root: Path, item: str, dry_run: bool) -> str:
@@ -112,6 +119,11 @@ def main() -> int:
         parser.error(f'source does not exist: {source}')
     if not target.exists():
         parser.error(f'target does not exist: {target}')
+
+    try:
+        validate_roots(source, target)
+    except ValueError as error:
+        parser.error(str(error))
 
     for item in ALLOWLIST:
         print(copy_path(source, target, item, args.dry_run))

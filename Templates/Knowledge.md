@@ -1,6 +1,6 @@
 ---
 type: knowledge
-status: active # provisional, developing, active, disputed, superseded, archived
+status: provisional # provisional, developing, active, disputed, superseded, archived
 created: YYYY-MM-DDTHH:mm:ss
 updated: YYYY-MM-DDTHH:mm:ss
 applies_from: unknown
@@ -45,6 +45,6 @@ trust: medium # low, medium, high, established
 
 *Practical uses, including approved and merely proposed applications.*
 
-## Related Projects and Ideas
+## Related Work
 
-*Links to relevant Project Contexts, Ideas, Decisions, Entities, Events, and Source records.*
+*Links to relevant Project Contexts, Knowledge, Decisions, Entities, Events, and Source records.*

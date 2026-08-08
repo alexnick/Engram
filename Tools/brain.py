@@ -738,7 +738,13 @@ def lint_workspace(root: Path) -> list[LintIssue]:
         )
         if is_knowledge:
             has_provenance = _has_any_metadata(metadata, ("provenance", "sources")) or _section_has_content(
-                body, ("Provenance", "Sources", "Происхождение", "Источники")
+                body,
+                (
+                    "Provenance",
+                    "Sources",
+                    "\u041f\u0440\u043e\u0438\u0441\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u0435",
+                    "\u0418\u0441\u0442\u043e\u0447\u043d\u0438\u043a\u0438",
+                ),
             )
             if not has_provenance:
                 issues.append(

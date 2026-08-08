@@ -1,6 +1,6 @@
 ---
 name: review-brain
-description: Runs an Inbox-oriented review of unprocessed captures and nearby context, surfacing duplicates, contradictions, forgotten ideas, and candidate actions in manageable batches. Use when the user asks what has accumulated, asks to clean or review the Brain or Inbox, or invokes /review.
+description: Use to review unprocessed captures and propose actions in small batches.
 ---
 
 # Review Brain

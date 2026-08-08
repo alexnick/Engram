@@ -1,13 +1,13 @@
 ---
 name: project-map
-description: Run the single user-facing workflow for large multi-session projects by maintaining a Markdown decision map, routing each frontier question into exploration, grilling, research, prototype, task, or sync as needed.
+description: Use for large multi-session projects. Maintain a decision map and route the current frontier to the right workflow.
 ---
 
 # Project Map
 
 ## Goal
 
-Use one simple user-facing workflow for large projects that are too broad for a single conversation. The user may call it "Project Map", "карта проекта", "разбор проекта", or simply ask to work through a big project from high-level design to implementation planning.
+Use one simple workflow for projects that are too broad for a single conversation. The user may call it a Project Map or ask to work through a large effort from high-level design to implementation planning.
 
 The map is a navigation and decision-planning layer. It does not replace canonical project specs, decision records, source records, or implementation plans. It points to them and keeps the route clear.
 
@@ -28,12 +28,10 @@ Keep the interface simple. The user should not need to remember multiple workflo
 
 Accept natural language such as:
 
-* "Давай заведём карту проекта для <project>."
-* "Продолжим карту проекта <project>."
-* "Разберём этот проект от high-level дизайна до implementation plan."
-* "Разберём систему <X> в рамках карты проекта."
-
-Use Russian in conversation with this user. Keep system files, skill instructions, workflow templates, and release-facing documentation in English.
+* "Create a project map for <project>."
+* "Continue the <project> map."
+* "Work through this project from high-level design to an implementation plan."
+* "Resolve system <X> within the project map."
 
 ## Startup router
 
@@ -79,7 +77,7 @@ A Project Map should use this shape:
 
 ## Decisions so far
 
-- [<resolved decision/spec/ticket>](link) — <one-line gist.>
+- `<link to resolved decision, spec, or ticket>` — <one-line gist.>
 
 ## Current frontier
 
@@ -126,7 +124,7 @@ Work at most one non-research ticket per session unless the user explicitly narr
 4. Route internally to the appropriate mode: exploration, grilling, research, prototype, task, or sync.
 5. Resolve the item into one of:
    * a durable decision/spec update proposed through `sync-brain`;
-   * a new or updated implementation plan/backlog;
+   * a proposed implementation-plan or backlog change routed through `sync-brain` when it updates canonical project state;
    * a blocked item with explicit prerequisites;
    * a fog item graduated into a sharper ticket;
    * an out-of-scope ruling.

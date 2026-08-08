@@ -1,6 +1,6 @@
 ---
 name: lint-brain
-description: Audits Life Workspace structure and semantics without modifying files. Use when the user asks to lint, validate, audit, check links or schema, find drift, or invokes /lint; run the deterministic Brain linter first, then report semantic findings and route fixes through Sync.
+description: Use to audit Life Workspace structure and semantics without modifying files.
 ---
 
 # Lint Brain
