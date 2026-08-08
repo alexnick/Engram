@@ -9,6 +9,7 @@ The project is still pre-release. Earlier work is summarized from the product hi
 ### Changed
 
 - Renamed product from "Life Workspace" to **Engram**. Repository moved from `alexnick/keeper` to [`alexnick/Engram`](https://github.com/alexnick/Engram). All skills, scripts, directories, paths, and documentation updated: `brain.py` → `engram.py`, `Brain/` → `Engram/`, `*-brain` skills → `*-engram`, `Life-Workspace-Protocol.md` → `Engram-Protocol.md`.
+- Added MIT License (`LICENSE` file in repository root).
 
 ### Added
 
