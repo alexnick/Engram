@@ -163,6 +163,21 @@ class StatusAndRestoreTests(unittest.TestCase):
             self.assertEqual((restored / "memories" / "MEMORY.md").read_text(encoding="utf-8"), "memory\n")
             self.assertTrue((restored / "skills" / "reasoning" / "learned-one" / "SKILL.md").is_file())
 
+    def test_restored_skills_remain_tracked_without_journey_history(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            workspace, _ = self.create_snapshot(root)
+            restored = root / "restored"
+            hermes_state.restore(workspace, restored, "default")
+            empty_journey = {"nodes": []}
+
+            status = hermes_state.status(workspace, restored, "default", empty_journey)
+            snapshot = hermes_state.snapshot(workspace, restored, "default", empty_journey)
+
+            self.assertTrue(status.in_sync)
+            self.assertEqual(snapshot.skill_count, 1)
+            self.assertEqual(snapshot.changed_files, 0)
+
     def test_restore_refuses_to_overwrite_different_live_files_without_force(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)

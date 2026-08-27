@@ -80,6 +80,9 @@ python Tools/hermes_state.py restore --target-hermes-home "$HERMES_HOME" --force
 Start a new Hermes session after restoring skills or memory. API keys, OAuth
 tokens, provider configuration, MCP credentials, and conversation history must
 be restored separately because they are deliberately absent from this mirror.
+Hermes journey usage/history metadata is also not restored, but the retained
+manifest keeps every restored skill in subsequent snapshots even when the new
+profile's journey graph starts empty.
 """
 
 
@@ -206,8 +209,20 @@ def state_root(workspace: Path, profile: str) -> Path:
     return workspace.resolve() / STATE_RELATIVE_ROOT / profile
 
 
-def build_manifest(hermes_home: Path, journey: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Path]]:
-    names = learned_skill_names(journey)
+def manifest_skill_names(manifest: dict[str, Any]) -> list[str]:
+    return sorted(
+        item["name"]
+        for item in manifest.get("skills", [])
+        if isinstance(item, dict) and isinstance(item.get("name"), str)
+    )
+
+
+def build_manifest(
+    hermes_home: Path,
+    journey: dict[str, Any],
+    retained_skill_names: Iterable[str] = (),
+) -> tuple[dict[str, Any], dict[str, Path]]:
+    names = sorted(set(learned_skill_names(journey)) | set(retained_skill_names))
     skills = discover_learned_skills(hermes_home / "skills", names)
     memory_entries: list[dict[str, str]] = []
     for filename in MEMORY_FILES:
@@ -278,8 +293,14 @@ def snapshot(
     workspace = workspace.resolve()
     hermes_home = hermes_home.resolve()
     journey = journey if journey is not None else load_journey()
-    manifest, skills = build_manifest(hermes_home, journey)
     destination = state_root(workspace, profile)
+    manifest_path = destination / "manifest.json"
+    retained_names: list[str] = []
+    if manifest_path.is_file():
+        retained_names = manifest_skill_names(
+            json.loads(manifest_path.read_text(encoding="utf-8"))
+        )
+    manifest, skills = build_manifest(hermes_home, journey, retained_names)
     changed = 0
 
     for filename in MEMORY_FILES:
@@ -294,7 +315,7 @@ def snapshot(
         )
 
     serialized_manifest = json.dumps(manifest, indent=2, sort_keys=True) + "\n"
-    changed += write_text_if_changed(destination / "manifest.json", serialized_manifest)
+    changed += write_text_if_changed(manifest_path, serialized_manifest)
     changed += write_text_if_changed(destination / "RECOVERY.md", RECOVERY_TEXT)
     return SnapshotResult(changed_files=changed, skill_count=len(manifest["skills"]))
 
@@ -325,7 +346,9 @@ def status(
         raise ValueError(f"snapshot manifest missing: {manifest_path}")
     stored = json.loads(manifest_path.read_text(encoding="utf-8"))
     live, _ = build_manifest(
-        hermes_home.resolve(), journey if journey is not None else load_journey()
+        hermes_home.resolve(),
+        journey if journey is not None else load_journey(),
+        manifest_skill_names(stored),
     )
     stored_entries = manifest_entries(stored)
     live_entries = manifest_entries(live)

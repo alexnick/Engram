@@ -120,7 +120,9 @@ Inspect that directory first. To restore into an existing profile, point
 `--target-hermes-home` at the active `HERMES_HOME`; the command refuses to
 overwrite different files unless `--force` is explicit. Start a new Hermes
 session after restoring. The snapshot's `RECOVERY.md` preserves the same
-instructions beside the backed-up state.
+instructions beside the backed-up state. Journey usage/history metadata is not
+restored, but manifest-listed skills remain tracked by future snapshots even
+when the new profile begins with an empty journey graph.
 
 ## Telegram
 
