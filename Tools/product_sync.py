@@ -34,6 +34,9 @@ ALLOWLIST = [
     'Templates',
     'Tools/engram.py',
     'Tools/test_engram.py',
+    'Tools/hermes_state.py',
+    'Tools/hermes_state_cron.py',
+    'Tools/test_hermes_state.py',
     'Tools/product_sync.py',
     'Dashboards/HOME.md',
     'README.md',
@@ -46,6 +49,7 @@ ALLOWLIST = [
 ]
 
 PROTECTED_PREFIXES = [
+    'Agent-State',
     'Engram/CONTEXT.md',
     'Engram/INDEX.md',
     'Engram/LOG.md',

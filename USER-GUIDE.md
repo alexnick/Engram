@@ -45,6 +45,7 @@ Operations define how an agent reads or changes the workspace. Raw preservation 
 | Process the Inbox | Review |
 | Audit the workspace | Lint |
 | Create a Git restore point | Checkpoint |
+| Mirror Hermes-learned skills and bounded memory | `python Tools/hermes_state.py snapshot` |
 
 Plain English is enough. Slash commands are optional and depend on the harness.
 
@@ -196,6 +197,23 @@ Propose a checkpoint for the approved architecture update. Exclude unrelated fil
 The default is proposal-only. Before a commit, the agent must inspect every staged path and stop if any staged work falls outside the approved scope. It must not reset, clean, amend, or hide unrelated work.
 
 Use `Engram/LOG.md` to find an operation and Git to inspect the actual file history.
+
+## Hermes self-improvement backup
+
+If Hermes is the agent maintaining the Engram, its learned skills and small
+always-loaded memory can be mirrored under `Agent-State/Hermes/<profile>/`:
+
+```bash
+python Tools/hermes_state.py snapshot
+python Tools/hermes_state.py status
+```
+
+This is a bounded operational backup, not a transcript export. It deliberately
+omits credentials, configuration, databases, logs, caches, and conversation
+history. The generated `RECOVERY.md` explains how to restore into a temporary
+directory first. Include changed `Agent-State/` files in a deliberate Git
+checkpoint when you want the mirror protected by repository history and its
+remote.
 
 ## Project files
 

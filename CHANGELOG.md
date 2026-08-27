@@ -13,6 +13,9 @@ The project is still pre-release. Earlier work is summarized from the product hi
 
 ### Added
 
+- Git-backed Hermes self-improvement snapshots with deterministic status and
+  guarded restore commands. The bridge mirrors only agent-created skills and
+  bounded built-in memory while excluding credentials and runtime/session data.
 - README acknowledgement section crediting Andrej Karpathy's LLM Wiki gist and Matt Pocock's skills repository as the sources of the core architecture and the grilling skill.
 - Harness-agnostic product maintenance skill for synchronizing reusable changes without copying private Engram content.
 - Hermes Agent setup guide for Desktop, CLI, Telegram, global skills, and bounded memory.

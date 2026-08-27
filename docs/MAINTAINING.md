@@ -23,6 +23,7 @@ The executable allowlist lives in `Tools/product_sync.py`. Keep this guide descr
 Do not overwrite these from a product update without an approved migration:
 
 ```text
+Agent-State/
 Engram/CONTEXT.md
 Engram/INDEX.md
 Engram/LOG.md
@@ -40,6 +41,10 @@ Learning/
 Feedback/
 CONTEXT-MAP.md
 ```
+
+`Agent-State/` is an optional private operational mirror. For example,
+`Tools/hermes_state.py` stores recoverable Hermes skills and bounded memory
+there without making that material part of the product or navigable corpus.
 
 `CONTEXT-MAP.md` begins as a starter file but becomes private routing state after setup.
 

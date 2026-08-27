@@ -75,6 +75,53 @@ The Engram is appropriate for:
 
 Do not copy the Engram into Hermes memory or `SOUL.md`. Both are startup context and should stay small.
 
+## Back up self-improvement into Git
+
+Hermes keeps its live profile under `HERMES_HOME`; Engram should not replace
+that runtime directory. Moving the whole profile into a repository would also
+capture credentials, configuration, logs, caches, databases, and transcripts.
+
+Use the bounded mirror instead:
+
+```bash
+python Tools/hermes_state.py snapshot
+python Tools/hermes_state.py status
+```
+
+The snapshot is written under `Agent-State/Hermes/<profile>/` and contains only:
+
+- active agent-created skills recorded by `hermes journey --json`, including
+  their references, templates, scripts, and assets;
+- `memories/MEMORY.md`;
+- `memories/USER.md`;
+- a deterministic manifest and recovery guide.
+
+It excludes provider configuration, API keys, OAuth tokens, MCP credentials,
+session databases, transcripts, logs, caches, and Skills Hub metadata. The live
+profile remains the runtime source, so Hermes continues working if the Engram
+checkout is unavailable. Run snapshots on a schedule if desired, but create Git
+checkpoints through the normal Engram approval boundary; an uncommitted mirror
+is not yet a remote backup.
+
+For script-only scheduling, copy `Tools/hermes_state_cron.py` into the active
+profile's `scripts/` directory and schedule that filename with the Engram root
+as the job workdir. The wrapper runs the tracked snapshot tool from the workdir
+and produces no output when nothing changed. Its setup is repeated in the
+generated recovery guide because Hermes cron configuration remains runtime
+state and is not mirrored.
+
+To verify recovery without touching the live profile:
+
+```bash
+python Tools/hermes_state.py restore --target-hermes-home ./restored-hermes
+```
+
+Inspect that directory first. To restore into an existing profile, point
+`--target-hermes-home` at the active `HERMES_HOME`; the command refuses to
+overwrite different files unless `--force` is explicit. Start a new Hermes
+session after restoring. The snapshot's `RECOVERY.md` preserves the same
+instructions beside the backed-up state.
+
 ## Telegram
 
 Run the gateway setup and select Telegram:

@@ -318,6 +318,12 @@ class LogTests(unittest.TestCase):
 
 
 class ProductSyncTests(unittest.TestCase):
+    def test_hermes_state_is_private_and_bridge_tools_are_product_core(self) -> None:
+        self.assertTrue(product_sync.is_protected("Agent-State/Hermes/default/manifest.json"))
+        self.assertIn("Tools/hermes_state.py", product_sync.ALLOWLIST)
+        self.assertIn("Tools/hermes_state_cron.py", product_sync.ALLOWLIST)
+        self.assertIn("Tools/test_hermes_state.py", product_sync.ALLOWLIST)
+
     def test_identical_roots_are_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
